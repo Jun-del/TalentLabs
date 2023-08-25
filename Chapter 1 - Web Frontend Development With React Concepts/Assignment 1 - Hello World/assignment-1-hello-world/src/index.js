@@ -9,7 +9,7 @@ root.render(
 	<React.StrictMode>
 		{/* <App /> */}
 		<h1>Hello World, this is a React app</h1>
-		<h2>I am exited for this journey</h2>
+		<h2>I am excited for this journey</h2>
 	</React.StrictMode>
 );
 
