@@ -12,6 +12,67 @@ tags: ["vscode", "terminal", "productivity"]
 
 ---
 
-### Additional
+# Prerequisites
 
 [Stack Overflow's 2023 Developer Survey](https://survey.stackoverflow.co/2023/#most-popular-technologies-new-collab-tools)
+
+- [Visual Studio Code](https://code.visualstudio.com/)
+- [Node.js](https://nodejs.org/en/)
+
+## Shortcuts
+
+Demo with index.html
+
+1. `Ctrl + Shift + P ` or `Cmd + Shift + P` - Open Command Palette, `Ctrl + P` to open file
+
+2. `Ctrl + f` search locally, `Ctrl + Shift + f` search globally (match case: match letter casing, whole word: match whole word, regex: match regular expression) + replace
+
+3. Search and replace: `Ctrl + alt + enter` to replace all matches, `Ctrl + d` to select next match, `Ctrl + k` to skip match, `Ctrl + Shift + l` / `Ctrl + F2` to select all matches
+
+4. `Ctrl + /` to comment out line
+
+5. `Ctrl + Shift + K` to delete line / `Ctrl + x` to cut line (faster alternative way of deleting)
+
+6. `Ctrl + Shift + up/down arrow key` to current line up or down
+
+7. `Ctrl + alt + up/down arrow key` to insert cursor above or below
+
+8. `Alt + Shift + up/down arrow key` to duplicate line
+
+9. `Ctrl + b` = toggle sidebar
+
+10. `Ctrl + j` / `Ctrl + ~` = toggle terminal
+
+11. `Ctrl + \` / `Ctrl + alt + left/right arrow key` = split editor
+
+12. `Ctrl + w` = close file / current tab
+
+13. `Ctrl + tab` / `Ctrl + PgUp/PgDown` = navigations between tabs (add shift to swap tabs)
+
+14. `Ctrl + Shift + t` = reopen closed tab
+
+### Recommended Extensions
+
+Demo Prettier, bracket pairs, and live server
+
+- [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
+
+- [Live Server](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer)
+
+- Bracket Pair (built-in) / Blockman / indent-rainbow (alternative)
+
+- [VSCode Icons](https://marketplace.visualstudio.com/items?itemName=vscode-icons-team.vscode-icons)
+
+- Colorize / Color Highlight, Image preview, Auto Rename Tag, Better Comment
+
+### Additional Reading
+
+- You can access VS Code on GitHub Codespaces, which is a cloud-based development environment by pressing `.` in the GitHub repository.
+
+- Explore the extensions! There are many useful extensions that can help you in your development. Watch some videos for recommendations.
+
+- [VS Code Shortcut Cheatsheet](https://code.visualstudio.com/shortcuts/keyboard-shortcuts-windows.pdf)
+
+- [Fireship VS Code Intro](https://www.youtube.com/watch?v=KMxo3T_MTvY)
+
+- [Fireship VS Code 25 Tips](https://www.youtube.com/watch?v=ifTF3ags0XI)

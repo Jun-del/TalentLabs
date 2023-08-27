@@ -1,6 +1,6 @@
 ---
 layout: ../../layouts/MarkdownPostLayout.astro
-title: "Introduction to terminal"
+title: "Introduction to Terminal"
 author: Neoh Wei Jun
 pubDate: 2023-08-27
 description: "An introduction to the terminal."
