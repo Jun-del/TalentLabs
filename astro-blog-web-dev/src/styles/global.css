@@ -20,6 +20,10 @@ h1 {
 	font-size: 2.5rem;
 }
 
+a:link {
+	text-decoration: none;
+}
+
 /* nav styles */
 
 .hamburger {
@@ -70,6 +74,50 @@ html.dark {
 
 .dark .nav-links a {
 	color: #fff;
+}
+
+/* Code */
+pre {
+	padding: 8px 16px;
+	overflow: auto;
+	border-radius: 4px;
+	background: #343434;
+}
+code {
+	padding: 4px;
+	border-radius: 4px;
+	background: #c4c4c4;
+	font-family: Consolas, Monaco, "Andale Mono", monospace;
+	direction: ltr;
+	font-size: 14px;
+}
+pre > code {
+	background-color: transparent;
+	padding: 0;
+	line-height: 1.5;
+	word-break: normal;
+	white-space: pre;
+	word-spacing: normal;
+	tab-size: 4;
+}
+
+.copy-code {
+	position: absolute;
+	top: 0;
+	right: 0;
+	background-color: rgb(203, 153, 253);
+	padding: 0.25rem 0.5rem;
+	font-size: 1rem;
+	line-height: 1rem;
+	color: white;
+	border: none;
+	border-radius: 10px;
+	margin-top: 2px;
+}
+
+.copy-code:hover {
+	cursor: pointer;
+	background-color: rgb(135, 0, 246);
 }
 
 @media screen and (min-width: 636px) {

@@ -1,13 +1,17 @@
 ---
 layout: ../../layouts/MarkdownPostLayout.astro
-title: My Second Blog Post
-author: Astro Learner
-pubDate: 2022-07-08
-description: "After learning some Astro, I couldn't stop!"
+title: "Introduction to Visual Studio Code"
+author: Neoh Wei Jun
+description: "An introduction to every web developer's favourite IDE."
 image:
   url: "https://docs.astro.build/assets/arc.webp"
   alt: "Thumbnail of Astro arcs."
-tags: ["vscode"]
+pubDate: 2023-08-27
+tags: ["vscode", "terminal", "productivity"]
 ---
 
-After a successful first week learning Astro, I decided to try some more. I wrote and imported a small component from memory!
+---
+
+### Additional
+
+[Stack Overflow's 2023 Developer Survey](https://survey.stackoverflow.co/2023/#most-popular-technologies-new-collab-tools)

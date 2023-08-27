@@ -1,29 +1,61 @@
 ---
 layout: ../../layouts/MarkdownPostLayout.astro
-title: "My First Blog Post"
-author: "Astro Learner"
-pubDate: 2022-07-01
-description: "This is the first post of my new Astro blog."
+title: "Introduction to terminal"
+author: Neoh Wei Jun
+pubDate: 2023-08-27
+description: "An introduction to the terminal."
 image:
   url: "https://docs.astro.build/assets/full-logo-light.png"
   alt: "The full Astro logo."
-tags: ["terminal"]
+tags: ["terminal", "productivity"]
 ---
 
-# My First Blog Post
+---
 
-Published on: 2022-07-01
+```bash
+echo "Hello World!"
+```
 
-Welcome to my _new blog_ about learning Astro! Here, I will share my learning journey as I build a new website.
+## Terminal and command lines
 
-## What I've accomplished
+### What is a terminal?
 
-1. **Installing Astro**: First, I created a new Astro project and set up my online accounts.
+The terminal is a program that allows you to interact with your computer using text commands. It is also known as the command line or shell.
 
-2. **Making Pages**: I then learned how to make pages by creating new `.astro` files and placing them in the `src/pages/` folder.
+1. **ls**: List all files in the current directory
 
-3. **Making Blog Posts**: This is my first blog post! I now have Astro pages and Markdown posts!
+2. **cd**: Change directory | ./: Current directory | ../: Parent directory | ~: Home directory | ..: Previous directory
 
-## What's next
+3. **mkdir**: Make directory (folder) | **rmdir**: Remove directory
 
-I will finish the Astro tutorial, and then keep adding more posts. Watch this space for more to come.
+4. **touch**: Create a file (_Windows_: $null > filename)
+
+5. **cat**: Print the content of a file | _Windows_: **type**
+
+6. **rm**: Remove a file | _Windows_: **del**
+
+7. **pwd**: Print working directory | _Windows_: **cd**
+
+8. **clear**: Clear the terminal screen | _Windows_: **cls** | ctrl + l (shortcut)
+
+9. **ctrl + c**: Cancel the current process / exit the current program
+
+10. **arrow up/down**: previous/next command (history)
+
+11. **tab**: autocomplete | **powershell**: **right arrow key**: for autocomplete / **f2**: List all history commands
+
+## Additional
+
+_If you are using Windows, consider using the new **PowerShell** from Microsoft. It is much better than the old command prompt._
+
+---
+
+Terminal configuration that I use (Windows): [oh-my-posh](https://ohmyposh.dev/)
+
+[Video: Make Windows Terminal Look Better | Oh My Posh Guide](https://www.youtube.com/watch?v=-G6GbXGo4wo)
+
+---
+
+For Mac: [oh-my-zsh](https://ohmyz.sh/)
+
+For Mac, a lot of YouTube videos on how to setup and configure it. Consider installing plugins such as auto-suggestion and syntax highlighting.
