@@ -35,6 +35,7 @@ I also plan on quickly go through the TalentLabs assignment once everyone comple
 5. **JavaScript**: I will teach you how to use JavaScript to make your website interactive.
 
 6. **Git and GitHub (Not sure yet)**: I will also teach you how to use Git and GitHub to manage your code.
+   [Intro to Git and GitHub](https://frontend.turing.edu/lessons/module-1/git-and-github.html)
 
 ## Concerns
 

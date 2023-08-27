@@ -41,7 +41,7 @@ Demo with index.html
 
 9. `Ctrl + b` = toggle sidebar
 
-10. `Ctrl + j` / `Ctrl + ~` = toggle terminal
+10. `Ctrl + j` / `Ctrl + ~` = toggle terminal (talk about terminal)
 
 11. `Ctrl + \` / `Ctrl + alt + left/right arrow key` = split editor
 

@@ -10,4 +10,19 @@ image:
 tags: ["vscode"]
 ---
 
-After a successful first week learning Astro, I decided to try some more. I wrote and imported a small component from memory!
+---
+
+- variables: let, const, var
+- modules: import / export
+- arrow functions
+- .map, .filter, .reduce, .sort, .includes,
+- shortcircuiting
+- destructuring
+- ... syntax (spread operator / rest operator)
+- ternary operator
+- template literals
+- async await
+- optional chaining
+- nullish coalescing
+
+[freecodecamp](https://www.freecodecamp.org/news/how-to-use-es6-javascript-features-in-react/)
