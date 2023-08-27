@@ -1,5 +1,6 @@
 import PropTypes from "prop-types";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const INITIAL_FORM_DATA = {
 	name: "",
@@ -7,6 +8,8 @@ const INITIAL_FORM_DATA = {
 };
 
 function AddContact({ addContactHandler }) {
+	const navigate = useNavigate();
+
 	const [formState, setFormState] = useState(INITIAL_FORM_DATA);
 
 	function handleSubmit(event) {
@@ -19,12 +22,17 @@ function AddContact({ addContactHandler }) {
 
 		addContactHandler(formState);
 		setFormState(INITIAL_FORM_DATA);
+
+		navigate("/");
 	}
 
 	return (
 		<div className="flex p-4">
-			<form onSubmit={handleSubmit}>
-				<h1 className="text-xl font-semibold mb-3">Add Contact</h1>
+			<form onSubmit={handleSubmit} className="flex flex-col w-screen">
+				<h1 className="text-xl font-semibold mb-3 ">Add Contact</h1>
+
+				<hr className="border-b-2 w-full mb-2" />
+
 				<div className="mb-4 border-b">
 					<label
 						className="block text-gray-700 font-semibold mb-1"
