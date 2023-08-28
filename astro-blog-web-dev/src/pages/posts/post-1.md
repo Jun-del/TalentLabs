@@ -4,9 +4,9 @@ title: "Introduction to Terminal"
 author: Neoh Wei Jun
 pubDate: 2023-08-27
 description: "An introduction to the terminal."
-image:
-  url: "https://docs.astro.build/assets/full-logo-light.png"
-  alt: "The full Astro logo."
+# image:
+#   url: "https://docs.astro.build/assets/full-logo-light.png"
+#   alt: "The full Astro logo."
 tags: ["terminal", "productivity"]
 ---
 

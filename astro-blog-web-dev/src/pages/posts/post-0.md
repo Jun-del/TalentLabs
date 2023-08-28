@@ -4,9 +4,9 @@ title: "Preface"
 author: Neoh Wei Jun
 pubDate: 2023-08-27
 description: "Introduction to the class."
-image:
-  url: "https://docs.astro.build/assets/full-logo-light.png"
-  alt: "The full Astro logo."
+# image:
+#   url: "https://docs.astro.build/assets/full-logo-light.png"
+#   alt: "The full Astro logo."
 tags: ["Introduction"]
 ---
 
@@ -34,7 +34,9 @@ I also plan on quickly go through the TalentLabs assignment once everyone comple
 
 5. **JavaScript**: I will teach you how to use JavaScript to make your website interactive.
 
-6. **Git and GitHub (Not sure yet)**: I will also teach you how to use Git and GitHub to manage your code.
+6. **React**: I will teach you how to use React to build your website.
+
+7. **Git and GitHub (Not sure yet)**: I will also teach you how to use Git and GitHub to manage your code.
    [Intro to Git and GitHub](https://frontend.turing.edu/lessons/module-1/git-and-github.html)
 
 ## Concerns

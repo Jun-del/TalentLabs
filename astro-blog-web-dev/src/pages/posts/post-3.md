@@ -4,9 +4,9 @@ title: "Introduction to HTML (HTML5)"
 author: Neoh Wei Jun
 pubDate: 2023-08-27
 description: "I had some challenges, but asking in the community really helped!"
-image:
-  url: "https://docs.astro.build/assets/rays.webp"
-  alt: "Thumbnail of Astro rays."
+# image:
+#   url: "https://docs.astro.build/assets/rays.webp"
+#   alt: "Thumbnail of Astro rays."
 tags: ["html"]
 ---
 
@@ -87,6 +87,8 @@ Anchor elements are used to define a hyperlink, which is alink to another page.
 <a href="https:/youtube.com">Youtube</a>
 ```
 
+target="\_blank" to open in new tab
+
 Output: [Youtube](https:/youtube.com) (there's an underline)
 
 ---
@@ -141,12 +143,20 @@ Output: <button>Click me</button>
 
 ### Inputs and tables
 
+Demo a form
+
 [w3schools inputs](https://www.w3schools.com/html/html_form_input_types.asp)
+
+---
 
 ## Additional Resources
 
 [w3schools](https://www.w3schools.com/html/default.asp)
 
 [MDN Web Docs](https://developer.mozilla.org/en-US/docs/Web/HTML/Element)
+
+[HTML tags list](https://www.tutorialrepublic.com/html-reference/html5-tags.php)
+
+[Essential beginner HTML tags](https://www.youtube.com/watch?v=K_EVuLegRZ0)
 
 [Complete Intro to Web Development, v3 - Brian Holt](https://btholt.github.io/complete-intro-to-web-dev-v3/)

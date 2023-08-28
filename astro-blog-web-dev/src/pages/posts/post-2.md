@@ -3,9 +3,9 @@ layout: ../../layouts/MarkdownPostLayout.astro
 title: "Introduction to Visual Studio Code"
 author: Neoh Wei Jun
 description: "An introduction to every web developer's favourite IDE."
-image:
-  url: "https://docs.astro.build/assets/arc.webp"
-  alt: "Thumbnail of Astro arcs."
+# image:
+#   url: "https://docs.astro.build/assets/arc.webp"
+#   alt: "Thumbnail of Astro arcs."
 pubDate: 2023-08-27
 tags: ["vscode", "terminal", "productivity"]
 ---
@@ -39,17 +39,19 @@ Demo with index.html
 
 8. `Alt + Shift + up/down arrow key` to duplicate line
 
-9. `Ctrl + b` = toggle sidebar
+9. `Alt + up/down arrow key` to move line up or down
 
-10. `Ctrl + j` / `Ctrl + ~` = toggle terminal (talk about terminal)
+10. `Ctrl + b` = toggle sidebar
 
-11. `Ctrl + \` / `Ctrl + alt + left/right arrow key` = split editor
+11. `Ctrl + j` / `Ctrl + ~` = toggle terminal (talk about terminal)
 
-12. `Ctrl + w` = close file / current tab
+12. `Ctrl + \` / `Ctrl + alt + left/right arrow key` = split editor
 
-13. `Ctrl + tab` / `Ctrl + PgUp/PgDown` = navigations between tabs (add shift to swap tabs)
+13. `Ctrl + w` = close file / current tab
 
-14. `Ctrl + Shift + t` = reopen closed tab
+14. `Ctrl + tab` / `Ctrl + PgUp/PgDown` = navigations between tabs (add shift to swap tabs)
+
+15. `Ctrl + Shift + t` = reopen closed tab
 
 ### Recommended Extensions
 
