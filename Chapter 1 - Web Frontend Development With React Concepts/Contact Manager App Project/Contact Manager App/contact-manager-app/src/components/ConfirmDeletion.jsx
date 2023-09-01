@@ -7,9 +7,9 @@ function ConfirmDeletion({ removeContactHandler }) {
 	const { id, name, email } = state.contact;
 
 	return (
-		<div className="fixed inset-0 overflow-y-auto">
+		<div className="fixed w-screen h-screen inset-0 overflow-y-auto">
 			<div className="flex items-center justify-center min-h-screen">
-				<div className="bg-white-100 rounded-lg shadow-lg shadow-slate-400 p-6 w-full max-w-md flex flex-col">
+				<div className="bg-slate-50 rounded-lg border-2 shadow-lg shadow-slate-400 p-6 w-full max-w-md flex flex-col">
 					<h2 className="text-lg font-bold mb-4">
 						Do you want to delete the following user?
 					</h2>
@@ -23,7 +23,7 @@ function ConfirmDeletion({ removeContactHandler }) {
 						{email}
 					</p>
 
-					<div className="flex justify-end">
+					<div className="flex justify-end flex-wrap gap-2">
 						<button
 							className="bg-red-500 hover:bg-red-600 text-white font-medium py-2 px-4 rounded mr-2"
 							onClick={() => {

@@ -15,18 +15,22 @@ function ContactList({ contacts, removeContactHandler }) {
 
 	return (
 		<div className="flex flex-col">
-			<div className="flex justify-between p-3 align-middle">
+			<div className="flex justify-between p-3 items-center">
 				<h2 className="text-2xl font-semibold p-2">Contact List</h2>
 
-				<Link to={`/add`}>
-					<button className="px-4 py-2 rounded bg-blue-500 hover:bg-blue-700 focus:bg-blue-700 text-white">
-						Add Contact
-					</button>
-				</Link>
+				<div>
+					<Link to={`/add`}>
+						<button className="px-4 py-2 rounded bg-blue-500 hover:bg-blue-700 focus:bg-blue-700 text-white">
+							Add Contact
+						</button>
+					</Link>
+				</div>
 			</div>
 
 			<hr className="border-b-2" />
-			<ul className="p-3">{contactList}</ul>
+			<div>
+				<ul className="p-3">{contactList}</ul>
+			</div>
 		</div>
 	);
 }
