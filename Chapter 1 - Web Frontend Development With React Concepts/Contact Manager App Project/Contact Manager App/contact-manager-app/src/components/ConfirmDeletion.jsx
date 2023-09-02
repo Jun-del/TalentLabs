@@ -2,53 +2,53 @@ import PropTypes from "prop-types";
 import { useLocation, useNavigate } from "react-router-dom";
 
 function ConfirmDeletion({ removeContactHandler }) {
-	const { state } = useLocation();
-	const navigate = useNavigate();
-	const { id, name, email } = state.contact;
+  const { state } = useLocation();
+  const navigate = useNavigate();
+  const { id, name, email } = state.contact;
 
-	return (
-		<div className="fixed w-screen h-screen inset-0 overflow-y-auto">
-			<div className="flex items-center justify-center min-h-screen">
-				<div className="bg-slate-50 rounded-lg border-2 shadow-lg shadow-slate-400 p-6 w-full max-w-md flex flex-col">
-					<h2 className="text-lg font-bold mb-4">
-						Do you want to delete the following user?
-					</h2>
+  return (
+    <div className="fixed inset-0 h-screen w-screen overflow-y-auto">
+      <div className="flex min-h-screen items-center justify-center">
+        <div className="flex w-full max-w-md flex-col rounded-lg border-2 bg-slate-50 p-6 shadow-lg shadow-slate-400">
+          <h2 className="mb-4 text-lg font-bold">
+            Do you want to delete the following user?
+          </h2>
 
-					<p className="mb-4">
-						<span className="text-lg font-semibold">Name: </span>
-						{name}
-					</p>
-					<p className="mb-4">
-						<span className="text-lg font-semibold">Email: </span>
-						{email}
-					</p>
+          <p className="mb-4">
+            <span className="text-lg font-semibold">Name: </span>
+            {name}
+          </p>
+          <p className="mb-4">
+            <span className="text-lg font-semibold">Email: </span>
+            {email}
+          </p>
 
-					<div className="flex justify-end flex-wrap gap-2">
-						<button
-							className="bg-red-500 hover:bg-red-600 text-white font-medium py-2 px-4 rounded mr-2"
-							onClick={() => {
-								removeContactHandler(id);
-								navigate("/");
-							}}
-						>
-							Delete
-						</button>
+          <div className="flex flex-wrap justify-end gap-2">
+            <button
+              className="mr-2 rounded bg-red-500 px-4 py-2 font-medium text-white hover:bg-red-600"
+              onClick={() => {
+                removeContactHandler(id);
+                navigate("/");
+              }}
+            >
+              Delete
+            </button>
 
-						<button
-							className="border border-gray-300 hover:bg-gray-100 text-gray-700 font-medium py-2 px-4 rounded"
-							onClick={() => navigate(-1)}
-						>
-							Cancel
-						</button>
-					</div>
-				</div>
-			</div>
-		</div>
-	);
+            <button
+              className="rounded border border-gray-300 px-4 py-2 font-medium text-gray-700 hover:bg-gray-100"
+              onClick={() => navigate(-1)}
+            >
+              Cancel
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
 }
 
 ConfirmDeletion.propTypes = {
-	removeContactHandler: PropTypes.func.isRequired,
+  removeContactHandler: PropTypes.func.isRequired,
 };
 
 export default ConfirmDeletion;

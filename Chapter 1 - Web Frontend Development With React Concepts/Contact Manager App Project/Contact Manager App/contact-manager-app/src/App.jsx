@@ -11,101 +11,122 @@ import ConfirmDeletion from "./components/ConfirmDeletion";
 import EditContact from "./components/EditContact";
 
 function App() {
-	const [contacts, setContacts] = useState([]);
+  const [contacts, setContacts] = useState([]);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [searchResult, setSearchResult] = useState([]);
 
-	async function retrievedContacts() {
-		const response = await api.get("/contacts");
-		return response.data;
-	}
+  async function retrievedContacts() {
+    const response = await api.get("/contacts");
+    return response.data;
+  }
 
-	async function addContactHandler(contact) {
-		const request = {
-			id: crypto.randomUUID(),
-			...contact,
-		};
+  async function addContactHandler(contact) {
+    const request = {
+      id: crypto.randomUUID(),
+      ...contact,
+    };
 
-		const response = await api.post("/contacts", request);
+    const response = await api.post("/contacts", request);
 
-		setContacts([...contacts, response.data]);
-	}
+    setContacts([...contacts, response.data]);
+  }
 
-	async function updateContactHandler(contact) {
-		const response = await api.put(`/contacts/${contact.id}`, contact);
-		const { id } = response.data;
+  async function updateContactHandler(contact) {
+    const response = await api.put(`/contacts/${contact.id}`, contact);
+    const { id } = response.data;
 
-		setContacts(
-			contacts.map((contact) => {
-				return contact.id === id ? { ...response.data } : contact;
-			})
-		);
-	}
+    setContacts(
+      contacts.map((contact) => {
+        return contact.id === id ? { ...response.data } : contact;
+      }),
+    );
+  }
 
-	async function removeContactHandler(contactId) {
-		await api.delete(`/contacts/${contactId}`);
+  async function removeContactHandler(contactId) {
+    await api.delete(`/contacts/${contactId}`);
 
-		const newContactList = contacts.filter(
-			(contact) => contact.id !== contactId
-		);
+    const newContactList = contacts.filter(
+      (contact) => contact.id !== contactId,
+    );
 
-		setContacts(newContactList);
-	}
+    setContacts(newContactList);
+  }
 
-	useEffect(() => {
-		const getAllContacts = async () => {
-			const allContacts = await retrievedContacts();
+  function searchHandler(searchValue) {
+    setSearchTerm(searchValue);
 
-			if (allContacts) {
-				setContacts(allContacts);
-			}
-		};
+    if (searchValue !== "") {
+      const newContactList = contacts.filter((contact) => {
+        return Object.values(contact)
+          .join(" ")
+          .toLowerCase()
+          .includes(searchValue.toLowerCase());
+      });
 
-		getAllContacts();
-	}, []);
+      setSearchResult(newContactList);
+    } else {
+      setSearchResult(contacts);
+    }
+  }
 
-	return (
-		<div>
-			<BrowserRouter>
-				<Header />
-				<Routes>
-					<Route
-						exact
-						path="/"
-						element={
-							<ContactList
-								contacts={contacts}
-								removeContactHandler={removeContactHandler}
-							/>
-						}
-					/>
+  useEffect(() => {
+    const getAllContacts = async () => {
+      const allContacts = await retrievedContacts();
 
-					<Route
-						exact
-						path="/add"
-						element={<AddContact addContactHandler={addContactHandler} />}
-					/>
+      if (allContacts) {
+        setContacts(allContacts);
+      }
+    };
 
-					<Route
-						exact
-						path="/edit"
-						element={
-							<EditContact updateContactHandler={updateContactHandler} />
-						}
-					/>
+    getAllContacts();
+  }, []);
 
-					<Route path="/contact/:id" element={<ContactDetails />} />
+  return (
+    <div>
+      <BrowserRouter>
+        <Header />
+        <Routes>
+          <Route
+            exact
+            path="/"
+            element={
+              <ContactList
+                contacts={searchTerm.length < 1 ? contacts : searchResult}
+                removeContactHandler={removeContactHandler}
+                searchTerm={searchTerm}
+                searchHandler={searchHandler}
+              />
+            }
+          />
 
-					<Route
-						path="/contact/:id/delete"
-						element={
-							<ConfirmDeletion removeContactHandler={removeContactHandler} />
-						}
-					/>
+          <Route
+            exact
+            path="/add"
+            element={<AddContact addContactHandler={addContactHandler} />}
+          />
 
-					<Route exact path="*" element={<ErrorPage />} />
-				</Routes>
-			</BrowserRouter>
-		</div>
-	);
+          <Route
+            exact
+            path="/edit"
+            element={
+              <EditContact updateContactHandler={updateContactHandler} />
+            }
+          />
+
+          <Route path="/contact/:id" element={<ContactDetails />} />
+
+          <Route
+            path="/contact/:id/delete"
+            element={
+              <ConfirmDeletion removeContactHandler={removeContactHandler} />
+            }
+          />
+
+          <Route exact path="*" element={<ErrorPage />} />
+        </Routes>
+      </BrowserRouter>
+    </div>
+  );
 }
 
 export default App;

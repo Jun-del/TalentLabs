@@ -22,7 +22,7 @@ const callAPI = async () => {
 
 	const users = await response.data;
 
-	const filteredUser = await users
+	const filteredUser = users
 		.filter((user) => {
 			return user.id % 2 !== 0;
 		})
