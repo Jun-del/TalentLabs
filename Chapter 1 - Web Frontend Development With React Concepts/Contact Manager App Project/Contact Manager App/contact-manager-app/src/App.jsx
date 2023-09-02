@@ -1,6 +1,5 @@
-import { useState, useEffect } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import api from "./api/contacts";
+import { ContactsCRUDContextProvider } from "./context/ContactsCRUDContext";
 
 import AddContact from "./components/AddContact";
 import Header from "./components/Header";
@@ -11,119 +10,25 @@ import ConfirmDeletion from "./components/ConfirmDeletion";
 import EditContact from "./components/EditContact";
 
 function App() {
-  const [contacts, setContacts] = useState([]);
-  const [searchTerm, setSearchTerm] = useState("");
-  const [searchResult, setSearchResult] = useState([]);
-
-  async function retrievedContacts() {
-    const response = await api.get("/contacts");
-    return response.data;
-  }
-
-  async function addContactHandler(contact) {
-    const request = {
-      id: crypto.randomUUID(),
-      ...contact,
-    };
-
-    const response = await api.post("/contacts", request);
-
-    setContacts([...contacts, response.data]);
-  }
-
-  async function updateContactHandler(contact) {
-    const response = await api.put(`/contacts/${contact.id}`, contact);
-    const { id } = response.data;
-
-    setContacts(
-      contacts.map((contact) => {
-        return contact.id === id ? { ...response.data } : contact;
-      }),
-    );
-  }
-
-  async function removeContactHandler(contactId) {
-    await api.delete(`/contacts/${contactId}`);
-
-    const newContactList = contacts.filter(
-      (contact) => contact.id !== contactId,
-    );
-
-    setContacts(newContactList);
-  }
-
-  function searchHandler(searchValue) {
-    setSearchTerm(searchValue);
-
-    if (searchValue !== "") {
-      const newContactList = contacts.filter((contact) => {
-        return Object.values(contact)
-          .join(" ")
-          .toLowerCase()
-          .includes(searchValue.toLowerCase());
-      });
-
-      setSearchResult(newContactList);
-    } else {
-      setSearchResult(contacts);
-    }
-  }
-
-  useEffect(() => {
-    const getAllContacts = async () => {
-      const allContacts = await retrievedContacts();
-
-      if (allContacts) {
-        setContacts(allContacts);
-      }
-    };
-
-    getAllContacts();
-  }, []);
-
   return (
-    <div>
+    <div className="h-screen w-screen">
       <BrowserRouter>
         <Header />
-        <Routes>
-          <Route
-            exact
-            path="/"
-            element={
-              <ContactList
-                contacts={searchTerm.length < 1 ? contacts : searchResult}
-                removeContactHandler={removeContactHandler}
-                searchTerm={searchTerm}
-                searchHandler={searchHandler}
-              />
-            }
-          />
+        <ContactsCRUDContextProvider>
+          <Routes>
+            <Route exact path="/" element={<ContactList />} />
 
-          <Route
-            exact
-            path="/add"
-            element={<AddContact addContactHandler={addContactHandler} />}
-          />
+            <Route exact path="/add" element={<AddContact />} />
 
-          <Route
-            exact
-            path="/edit"
-            element={
-              <EditContact updateContactHandler={updateContactHandler} />
-            }
-          />
+            <Route exact path="/contact/:id/edit" element={<EditContact />} />
 
-          <Route path="/contact/:id" element={<ContactDetails />} />
+            <Route path="/contact/:id" element={<ContactDetails />} />
 
-          <Route
-            path="/contact/:id/delete"
-            element={
-              <ConfirmDeletion removeContactHandler={removeContactHandler} />
-            }
-          />
+            <Route path="/contact/:id/delete" element={<ConfirmDeletion />} />
 
-          <Route exact path="*" element={<ErrorPage />} />
-        </Routes>
+            <Route exact path="*" element={<ErrorPage />} />
+          </Routes>
+        </ContactsCRUDContextProvider>
       </BrowserRouter>
     </div>
   );

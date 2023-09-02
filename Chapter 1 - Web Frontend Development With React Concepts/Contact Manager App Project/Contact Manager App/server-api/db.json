@@ -1,24 +1,14 @@
 {
-  "contacts": [
-    {
-      "id": "9862f866-6751-4f50-a234-6dc7221bcb44",
-      "name": "jun",
-      "email": "jun@email.com"
-    },
-    {
-      "id": "589db6be-1846-4330-9c0a-5dadef89086c",
-      "name": "test",
-      "email": "test@email.com"
-    },
-    {
-      "id": "6482752d-d55b-403a-9485-f87bac4bc6ef",
-      "name": "john",
-      "email": "john@email.com"
-    },
-    {
-      "id": "f4b43c14-91da-4e11-9a0d-15bea3504f31",
-      "name": "name",
-      "email": "tester@gmail.com"
-    }
-  ]
+	"contacts": [
+		{
+			"id": "344bc794-b6ee-4ad5-93d4-778271f47db1",
+			"name": "tester4",
+			"email": "tester@mail.com"
+		},
+		{
+			"id": "81548aa1-c744-473b-b8df-45690f83df03",
+			"name": "user2",
+			"email": "user2@email.com"
+		}
+	]
 }

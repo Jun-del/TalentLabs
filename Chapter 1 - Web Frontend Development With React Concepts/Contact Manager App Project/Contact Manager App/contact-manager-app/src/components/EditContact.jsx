@@ -1,30 +1,34 @@
-import PropTypes from "prop-types";
 import { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import { useContextCrud } from "../context/ContactsCRUDContext";
 
-const INITIAL_FORM_DATA = {
-  id: "",
-  name: "",
-  email: "",
-};
-
-function EditContact({ updateContactHandler }) {
+function EditContact() {
   const { state } = useLocation();
-  const navigate = useNavigate();
   const { id, name, email } = state.contact;
 
-  const [formState, setFormState] = useState({ id, name, email });
+  const navigate = useNavigate();
+
+  const [newName, setNewName] = useState(name);
+  const [newEmail, setNewEmail] = useState(email);
+
+  const { updateContactHandler } = useContextCrud();
 
   function handleSubmit(event) {
     event.preventDefault();
 
-    if (formState.email === "" || formState.name === "") {
+    if (newEmail === "" || newName === "") {
       alert("All the fields are mandatory");
       return;
     }
 
-    updateContactHandler(formState);
-    setFormState(INITIAL_FORM_DATA);
+    updateContactHandler({
+      id,
+      name: newName,
+      email: newEmail,
+    });
+
+    setNewName("");
+    setNewEmail("");
 
     navigate("/");
   }
@@ -48,9 +52,9 @@ function EditContact({ updateContactHandler }) {
             id="name-input"
             type="text"
             placeholder="John Doe"
-            value={formState.name}
+            value={newName}
             onChange={(e) => {
-              setFormState({ ...formState, name: e.target.value });
+              setNewName(e.target.value);
             }}
           />
         </div>
@@ -67,9 +71,9 @@ function EditContact({ updateContactHandler }) {
             id="email-input"
             type="email"
             placeholder="example@email.com"
-            value={formState.email}
+            value={newEmail}
             onChange={(e) => {
-              setFormState({ ...formState, email: e.target.value });
+              setNewEmail(e.target.value);
             }}
           />
         </div>
@@ -96,7 +100,3 @@ function EditContact({ updateContactHandler }) {
 }
 
 export default EditContact;
-
-EditContact.propTypes = {
-  updateContactHandler: PropTypes.func.isRequired,
-};

@@ -1,28 +1,29 @@
-import PropTypes from "prop-types";
-import { useRef } from "react";
+import { useEffect } from "react";
 import ContactCard from "./ContactCard";
 import { Link } from "react-router-dom";
+import { useContextCrud } from "../context/ContactsCRUDContext";
 
-function ContactList({
-  contacts,
-  removeContactHandler,
-  searchTerm,
-  searchHandler,
-}) {
-  const inputEle = useRef(null);
+function ContactList() {
+  const {
+    contacts,
+    handleRetrieveContacts,
+    searchTerm,
+    searchResult,
+    searchHandler,
+  } = useContextCrud();
 
-  const contactList = contacts.map((contact) => {
-    return (
-      <ContactCard
-        key={contact.id}
-        contact={contact}
-        removeContactHandler={removeContactHandler}
-      />
-    );
+  useEffect(() => {
+    handleRetrieveContacts();
   });
 
-  const getSearchTerm = () => {
-    searchHandler(inputEle?.current.value);
+  const contactList = (searchTerm.length < 1 ? contacts : searchResult).map(
+    (contact) => {
+      return <ContactCard key={contact.id} contact={contact} />;
+    },
+  );
+
+  const onUserSearch = (e) => {
+    searchHandler(e.target.value);
   };
 
   return (
@@ -42,11 +43,10 @@ function ContactList({
 
         <div className="flex w-9/12 items-center self-center">
           <input
-            ref={inputEle}
             type="text"
             placeholder="Search Contacts"
             value={searchTerm}
-            onChange={getSearchTerm}
+            onChange={(e) => onUserSearch(e)}
             className="my-2 w-full rounded-sm border-2 border-gray-400 px-2 py-1 hover:border-gray-600"
           />
         </div>
@@ -68,13 +68,5 @@ function ContactList({
     </div>
   );
 }
-
-ContactList.propTypes = PropTypes.arrayOf(
-  PropTypes.shape({
-    id: PropTypes.number.isRequired,
-    name: PropTypes.string.isRequired,
-    email: PropTypes.string.isRequired,
-  }),
-).isRequired;
 
 export default ContactList;

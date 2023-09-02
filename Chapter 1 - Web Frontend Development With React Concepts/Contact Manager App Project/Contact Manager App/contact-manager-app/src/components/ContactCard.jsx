@@ -30,7 +30,7 @@ function ContactCard({ contact }) {
 
         <div className="flex gap-3">
           <div>
-            <Link to={"/edit"} state={{ contact: contact }}>
+            <Link to={`/contact/${id}/edit`} state={{ contact: contact }}>
               <button className="flex items-center gap-2 rounded-full border bg-green-500 px-3 py-1 text-white hover:bg-green-700 focus:bg-green-700">
                 <PencilIcon color="white" size={18} />
                 Edit

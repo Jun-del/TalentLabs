@@ -1,27 +1,26 @@
-import PropTypes from "prop-types";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useContextCrud } from "../context/ContactsCRUDContext";
 
-const INITIAL_FORM_DATA = {
-  name: "",
-  email: "",
-};
-
-function AddContact({ addContactHandler }) {
+function AddContact() {
   const navigate = useNavigate();
 
-  const [formState, setFormState] = useState(INITIAL_FORM_DATA);
+  const { addContactHandler } = useContextCrud();
+
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
 
   function handleSubmit(event) {
     event.preventDefault();
 
-    if (formState.email === "" || formState.name === "") {
+    if (email === "" || name === "") {
       alert("All the fields are mandatory");
       return;
     }
 
-    addContactHandler(formState);
-    setFormState(INITIAL_FORM_DATA);
+    addContactHandler({ name, email });
+    setName("");
+    setEmail("");
 
     navigate("/");
   }
@@ -45,9 +44,9 @@ function AddContact({ addContactHandler }) {
             id="name-input"
             type="text"
             placeholder="John Doe"
-            value={formState.name}
+            value={name}
             onChange={(e) => {
-              setFormState({ ...formState, name: e.target.value });
+              setName(e.target.value);
             }}
           />
         </div>
@@ -64,19 +63,27 @@ function AddContact({ addContactHandler }) {
             id="email-input"
             type="email"
             placeholder="example@email.com"
-            value={formState.email}
+            value={email}
             onChange={(e) => {
-              setFormState({ ...formState, email: e.target.value });
+              setEmail(e.target.value);
             }}
           />
         </div>
 
-        <div>
+        <div className="flex items-center gap-4">
           <button
             className="rounded bg-blue-500 px-4 py-1 text-white hover:bg-blue-700 focus:bg-blue-700"
             type="submit"
           >
             Add
+          </button>
+
+          <button
+            type="button"
+            className="rounded bg-red-500 px-4 py-1 text-white hover:bg-red-700 focus:bg-red-700"
+            onClick={() => navigate(-1)}
+          >
+            Cancel
           </button>
         </div>
       </form>
@@ -85,7 +92,3 @@ function AddContact({ addContactHandler }) {
 }
 
 export default AddContact;
-
-AddContact.propTypes = {
-  addContactHandler: PropTypes.func.isRequired,
-};
