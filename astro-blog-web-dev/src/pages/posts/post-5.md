@@ -7,7 +7,7 @@ description: "The programming language of the web"
 # image:
 #   url: "https://docs.astro.build/assets/arc.webp"
 #   alt: "Thumbnail of Astro arcs."
-tags: ["javascript", "react"]
+tags: ["browser", "javascript", "react"]
 ---
 
 ## [Developer Tools](https://developer.chrome.com/docs/devtools/)
@@ -169,7 +169,7 @@ console.log(sum3); // 11
 
 ---
 
-### [Basic Operators](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Expressions_and_Operators#basic_operators) (Arithmetic, Assignment, Comparison, Logical, String, Conditional, Comma)
+### [Basic Operators](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Expressions_and_Operators#basic_operators): Arithmetic, Assignment, Comparison, Logical, String, Conditional, Comma
 
 ```js
 // Arithmetic operators ( +, -, *, /, %, **, ++, --)
@@ -243,7 +243,7 @@ console.log(Array.isArray(cars)); // true
 
 ---
 
-### [Control flow](https://blog.devgenius.io/control-flow-statements-in-js-eed55b11aee8) (Conditional statements, Loops (Break, Continue), Try/Catch Statements)
+### [Control flow](https://blog.devgenius.io/control-flow-statements-in-js-eed55b11aee8): Conditional statements, Loops (Break, Continue), Try/Catch Statements
 
 ```js
 // if statement (if condition is true, do something)
@@ -347,7 +347,7 @@ try {
 
 ---
 
-### Functions (Reusable blocks of code, can be called multiple times, hoisted to the top of the file)
+### [Functions](https://javascript.info/function-basics): Reusable blocks of code, can be called multiple times, hoisted to the top of the file
 
 ```js
 // Function declaration (function keyword, name, parameters, body)
@@ -447,7 +447,7 @@ displayNames("John", "Alice", "Bob", "Eve", "Charlie");
 
 ---
 
-### [Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object) (store values in key-value pairs, dot notation, bracket notation, object methods, this keyword)
+### [Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object): store values in key-value pairs, dot notation, bracket notation, object methods, this keyword
 
 **[Object Prototypes and Inheritance](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Inheritance_and_the_prototype_chain)**
 
@@ -588,7 +588,7 @@ console.log(person.location.city);
 console.log(person.location?.city); // undefined
 ```
 
-**[Shallow copy vs deep copy](https://www.freecodecamp.org/news/copying-stuff-in-javascript-how-to-differentiate-between-deep-and-shallow-copies-b6d8c1ef09cd/)**
+**[Shallow copy/clone vs deep copy](https://www.freecodecamp.org/news/copying-stuff-in-javascript-how-to-differentiate-between-deep-and-shallow-copies-b6d8c1ef09cd/)**
 
 - A deep copy of an object creates a completely independent copy of the original object, including all nested objects and their properties.
 - A shallow copy of an object only copies the top-level properties, and nested object references are shared between the original and the copy.
@@ -658,7 +658,7 @@ console.log(originalObject.address.country.name); // Output: Malaysia
 console.log(shallowCopy.address.country.name); // Output: Malaysia
 ```
 
-**Deep copy**: To achieve a true deep copy, you would need to create copies of all nested objects and their properties recursively.
+[**Deep copy**](https://developer.mozilla.org/en-US/docs/Glossary/Deep_copy): To achieve a true deep copy, you would need to create copies of all nested objects and their properties recursively.
 
 ```js
 const originalObject = {
@@ -712,9 +712,9 @@ console.log(originalObject); // Original object remains unchanged
 console.log(deepCopiedObject); // Deep copied object is independent
 ```
 
-**[Array shallow copy and deep copy](https://exploringjs.com/deep-js/ch_copying-objects-and-arrays.html#:~:text=Shallow%20copying%20only%20copies%20the,makes%20copies%20of%20all%20nodes.)**
+**[Array shallow copy and deep copy](https://www.freecodecamp.org/news/how-to-clone-an-array-in-javascript-1d3183468f6a/)**
 
-- **Shallow copy**: The new array references the same elements as the original array. If a _referenced_ element changes, the changes are visible in both the new and original arrays.
+- [**Shallow copy**](https://dev.to/smpnjn/javascript-shallow-copy-what-is-a-shallow-copy-1pc5): The new array references the same elements as the original array. If a _referenced_ element changes, the changes are visible in both the new and original arrays.
 
 ```js
 // Shallow copy
@@ -731,7 +731,7 @@ console.log(originalArray); // [1, 2, [99, 4]]
 console.log(shallowCopy); // [1, 2, [99, 4]] (nested array is shared)
 ```
 
-- **Deep copy**: The new array references different elements than the original array. If a referenced element changes, the changes are not visible in the new array (Independent).
+- [**Deep copy**](https://dev.to/samanthaming/how-to-deep-clone-an-array-in-javascript-3cig): The new array references different elements than the original array. If a referenced element changes, the changes are not visible in the new array (Independent).
 
 ```js
 // Deep copy, every element is copied recursively
@@ -1319,7 +1319,7 @@ console.log(user);
 
 ---
 
-### [Short circuiting](https://www.educative.io/answers/what-are-javascript-short-circuiting-operators) (ES6) (evaluation of an expression from left to right)
+### [Short circuiting](https://www.educative.io/answers/what-are-javascript-short-circuiting-operators) (ES6) Act as "gate": Evaluation of an expression from left to right stops (short-circuits) once the result is determined
 
 - #### [Logical AND (&&)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Logical_AND) (Returns the first falsy value or the last value if none were found)
 
@@ -1448,7 +1448,9 @@ myPromise
 	});
 ```
 
-- [**Promise.all**](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/all) / [**Promise.allSettled**](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/all)
+- [**Promise.all**](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/all): The Promise.all() method takes an array of promises and returns a single Promise that resolves to an array of the results. It resolves when all the promises in the array resolve, or **rejects if _any_ of the promises reject**
+
+- [**Promise.allSettled**](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/all): The Promise.allSettled() method takes an array of promises and returns a single Promise that resolves to an array of objects representing the status of each promise. It **resolves when all the promises in the array have settled (resolved or rejected), or rejects if the array contains no promises**
 
 ```js
 // Promise.all: Wait for all promises to resolve or reject
@@ -1497,7 +1499,8 @@ Promise.allSettled([promise1, promise2, promise3]).then((results) => {
 async function fetchData() {
 	// try-catch block: Used to handle errors
 	try {
-		// await keyword: Used to wait for the asynchronous operation to complete
+		// await keyword: Used to wait for the asynchronous
+		// operation to complete
 		const response = await fetch("https://api.example.com/data");
 		const data = await response.json();
 		return data;
@@ -1542,8 +1545,12 @@ fetchUserData("jun-del")
 // Chain multiple async functions together
 async function performAsyncTasks() {
 	try {
+		// Wait for the first async function to complete before
+		// running the second one
 		const result1 = await someAsyncFunction();
 		const result2 = await anotherAsyncFunction(result1);
+
+		// Return the result of the second async function
 		return result2;
 	} catch (error) {
 		throw new Error("An error occurred during async tasks");
@@ -1551,6 +1558,7 @@ async function performAsyncTasks() {
 }
 
 performAsyncTasks()
+	// Return the result of the second async function
 	.then((result) => {
 		console.log(result);
 	})
