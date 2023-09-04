@@ -16,7 +16,7 @@ tags: ["Introduction"]
 
 My name is Neoh Wei Jun, and I will be teaching you the fundamentals of web development. Feel free to ask any questions and correct me if I am wrong, as I am also learning from you. If I don't know the answer, we will find out together.
 
-I also plan on quickly go through the TalentLabs assignment once everyone completed it and share my thoughts on it. E.g., assignment 1 structure, code quality, etc. IF you have a problem with the assignment, you can also ask me for help.
+I also plan on quickly go through the TalentLabs assignment once everyone completed it and share my thoughts on it. E.g., assignment 1 structure, code quality, etc. If you have a problem with the assignment, you can also ask me for help.
 
 ## Prerequisites
 

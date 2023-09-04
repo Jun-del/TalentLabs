@@ -3,7 +3,7 @@ layout: ../../layouts/MarkdownPostLayout.astro
 title: "Introduction to CSS (CSS3)"
 author: Neoh Wei Jun
 pubDate: 2023-08-27
-description: "This post will show up on its own!"
+description: ""
 # image:
 #   url: "https://docs.astro.build/default-og-image.png"
 #   alt: "The word “astro” against an illustration of planets and stars."
@@ -12,7 +12,7 @@ tags: ["html", "css"]
 
 ## Introduction to CSS (CSS3)
 
-### [CSS](https://excalidraw.com/#json=rUoSihkduden4VjLlOGIj,2WNoN_vvI5mjYHXMjWItvQ)
+### You can access the Exaclidraw website here: [CSS](https://excalidraw.com/#json=rUoSihkduden4VjLlOGIj,2WNoN_vvI5mjYHXMjWItvQ)
 
 ---
 

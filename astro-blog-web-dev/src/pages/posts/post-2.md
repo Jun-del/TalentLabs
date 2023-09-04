@@ -23,7 +23,7 @@ tags: ["vscode", "terminal", "productivity"]
 
 Demo with index.html
 
-1. `Ctrl + Shift + P ` or `Cmd + Shift + P` - Open Command Palette, `Ctrl + P` to open file
+1. `Ctrl + Shift + P` or `Cmd + Shift + P` - Open Command Palette, `Ctrl + P` to open file
 
 2. `Ctrl + f` search locally, `Ctrl + Shift + f` search globally (match case: match letter casing, whole word: match whole word, regex: match regular expression) + replace
 
@@ -53,6 +53,10 @@ Demo with index.html
 
 15. `Ctrl + Shift + t` = reopen closed tab
 
+16. `Alt + up/down arrow key` = move line up or down
+
+17. `Ctrl + l` = select whole line
+
 ### Recommended Extensions
 
 Demo Prettier, bracket pairs, and live server
@@ -65,7 +69,7 @@ Demo Prettier, bracket pairs, and live server
 
 - [VSCode Icons](https://marketplace.visualstudio.com/items?itemName=vscode-icons-team.vscode-icons)
 
-- Colorize / Color Highlight, Image preview, Auto Rename Tag, Better Comment
+- Colorize / Color Highlight, Image Preview, Better Comments
 
 ### Additional Reading
 
