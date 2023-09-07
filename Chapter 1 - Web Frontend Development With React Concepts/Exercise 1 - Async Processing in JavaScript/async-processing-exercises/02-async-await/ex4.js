@@ -20,7 +20,7 @@ const callAPI = async () => {
 		"https://jsonplaceholder.typicode.com/users"
 	);
 
-	const users = await response.data;
+	const users = response.data;
 
 	const filteredUser = users
 		.filter((user) => {

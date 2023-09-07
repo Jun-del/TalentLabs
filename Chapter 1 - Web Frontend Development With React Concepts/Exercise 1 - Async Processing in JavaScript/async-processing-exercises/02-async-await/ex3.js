@@ -18,7 +18,7 @@ const callAPI = async () => {
 		"https://jsonplaceholder.typicode.com/users"
 	);
 
-	const data = await response.data;
+	const data = response.data;
 
 	const filteredUser = data.filter((user) => {
 		return user.id % 2 !== 0;

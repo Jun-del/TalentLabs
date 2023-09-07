@@ -20,7 +20,7 @@ const callAPI = async () => {
 		"https://jsonplaceholder.typicode.com/users"
 	);
 
-	const data = await response.data;
+	const data = response.data;
 
 	console.log(JSON.stringify(data, undefined, 2));
 	alert(JSON.stringify(data, undefined, 2));
