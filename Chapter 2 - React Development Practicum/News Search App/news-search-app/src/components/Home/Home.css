@@ -1,0 +1,20 @@
+.main-container {
+  width: 100vw;
+  height: auto;
+}
+
+.content-container {
+  height: 90vh;
+}
+
+.left-panel-container {
+  max-height: 90vh;
+  height: 100%;
+  overflow-y: auto;
+}
+
+.right-panel-container {
+  max-height: 90vh;
+  height: 100%;
+  overflow: auto;
+}

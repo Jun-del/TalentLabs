@@ -1,0 +1,17 @@
+a {
+  text-decoration: none;
+  color: black;
+}
+
+.favourite-item {
+  transition: box-shadow 0.3s;
+}
+
+.favourite-item:hover {
+  box-shadow: 0 0 11px rgba(33, 33, 33, 0.2);
+}
+
+/* To enable Dark Mode */
+.favourite-item a {
+  color: inherit;
+}

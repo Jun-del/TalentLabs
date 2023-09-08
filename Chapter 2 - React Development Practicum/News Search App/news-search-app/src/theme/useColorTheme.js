@@ -1,31 +1,35 @@
 import { createTheme } from "@mui/material";
-import { useState, useMemo } from "react";
-import theme from "./theme";
+import { useState, useMemo, useEffect } from "react";
+import { getDesignTokens } from "./theme";
+import { DARK_MODE_LOCAL_STORAGE_KEY } from "../constant/constants";
 
 export const useColorTheme = () => {
-  const [mode, setMode] = useState("light");
+  // * Check the user's dark mode settings
+  const isDarkMode =
+    window.matchMedia &&
+    window.matchMedia("(prefers-color-scheme:dark)").matches;
+
+  const [mode, setMode] = useState(isDarkMode ? "dark" : "light");
+
+  useEffect(() => {
+    // * Check the user's local storage for dark mode settings
+    const lightDarkMode = localStorage.getItem(DARK_MODE_LOCAL_STORAGE_KEY);
+    if (lightDarkMode && ["light", "dark"].includes(lightDarkMode)) {
+      setMode(lightDarkMode);
+    }
+  }, []);
 
   const toggleColorMode = () => {
+    const newMode = mode === "light" ? "dark" : "light";
     setMode((prevMode) => (prevMode === "light" ? "dark" : "light"));
+    localStorage.setItem(DARK_MODE_LOCAL_STORAGE_KEY, newMode);
   };
 
+  // * For custom theme
   const modifiedTheme = useMemo(
-    () =>
-      createTheme({
-        ...theme,
-        palette: {
-          ...theme.palette,
-          mode,
-        },
-      }),
+    () => createTheme(getDesignTokens(mode)),
     [mode],
   );
-
-  // * For custom theme
-  // const modifiedTheme = React.useMemo(
-  //   () => createTheme(getDesignTokens(mode)),
-  //   [mode]
-  // );
 
   return {
     theme: modifiedTheme,

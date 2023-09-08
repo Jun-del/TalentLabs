@@ -2,8 +2,8 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Grid from "@mui/material/Grid";
 import TextField from "@mui/material/TextField";
-import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
+import Typography from "@mui/material/Typography";
 import LinearProgress from "@mui/material/LinearProgress";
 import PasswordTextField from "../custom-components/PasswordTextField";
 import ErrorSnackbar from "../custom-components/ErrorSnackbar";
@@ -45,43 +45,40 @@ const Login = () => {
 
   function handleSubmit(e) {
     e.preventDefault();
-
     setIsLoginInProgress(true);
 
     // * Timeout to simulate API call for logging in (loading)
     setTimeout(() => {
-      for (let user of registeredUsers) {
-        if (user.username === username && user.password === password) {
-          setIsLoggedIn(true);
+      const user = registeredUsers.find(
+        (user) => user.username === username && user.password === password,
+      );
 
-          localStorage.setItem(LOGIN_LOCAL_STORAGE_KEY, JSON.stringify(true));
-          localStorage.setItem(
-            USERNAME_LOCAL_STORAGE_KEY,
-            JSON.stringify(username),
-          );
+      if (user) {
+        setIsLoggedIn(true);
 
-          setIsLoginInProgress(false);
-          setIsLoginError(false);
+        localStorage.setItem(LOGIN_LOCAL_STORAGE_KEY, JSON.stringify(true));
+        localStorage.setItem(
+          USERNAME_LOCAL_STORAGE_KEY,
+          JSON.stringify(username),
+        );
 
-          navigate("/home");
-        } else {
-          setIsLoginError(true);
-          setIsLoginInProgress(false);
-          return;
-        }
+        setIsLoginError(false);
+        navigate("/home");
+      } else {
+        setIsLoginError(true);
       }
-    }, 1500);
+
+      setIsLoginInProgress(false);
+    }, 1000);
   }
 
   return (
     <>
       <Grid
         container
-        spacing={2}
         justifyContent="center"
         alignItems="center"
-        // style={{ backgroundColor: "lightgray" }}
-        style={{ height: "100vh" }}
+        sx={{ minHeight: "100vh", width: "100%" }}
       >
         {/* Grid item which is a container for both the label and form */}
         <Grid
@@ -90,46 +87,45 @@ const Login = () => {
           direction="column"
           justifyContent="center"
           alignItems="center"
-          // bgcolor="lightblue"
         >
           {/* Grid for Title */}
-          <Grid item bgcolor="lightcoral">
-            <h1>Find My News</h1>
+          <Grid item p={1} marginBottom={2}>
+            <Typography
+              variant="h1"
+              textAlign="center"
+              sx={{ userSelect: "none" }}
+            >
+              Find My News
+            </Typography>
           </Grid>
 
           {/* Grid for form */}
-          <Grid item bgcolor="lightcyan">
+          <Grid item width={{ sm: "50%", lg: "35%" }}>
             <form onSubmit={handleSubmit}>
-              <Box
-                sx={{
-                  display: "flex",
-                  flexDirection: "column",
-                  flexWrap: "wrap",
-                  gap: 2,
-                }}
-              >
-                <TextField
-                  required
-                  type="text"
-                  label="Name"
-                  placeholder="John Doe"
-                  helperText={isLoginError && "Incorrect username"}
-                  error={isLoginError}
-                  value={username}
-                  onChange={handleUsernameChange}
-                />
+              <Grid container direction="column" flexWrap="wrap" gap={2}>
+                <Grid item>
+                  <TextField
+                    fullWidth
+                    required
+                    type="text"
+                    label="Name"
+                    placeholder="John Doe"
+                    helperText={isLoginError && "Incorrect username"}
+                    error={isLoginError}
+                    value={username}
+                    onChange={handleUsernameChange}
+                  />
+                </Grid>
 
-                <PasswordTextField
-                  password={password}
-                  handlePasswordChange={handlePasswordChange}
-                  isLoginError={isLoginError}
-                />
+                <Grid item>
+                  <PasswordTextField
+                    password={password}
+                    handlePasswordChange={handlePasswordChange}
+                    isLoginError={isLoginError}
+                  />
+                </Grid>
 
-                <Box
-                  sx={{
-                    width: "100%",
-                  }}
-                >
+                <Grid item>
                   <Button
                     fullWidth
                     variant="contained"
@@ -139,8 +135,8 @@ const Login = () => {
                     {isLoginInProgress ? "Signing in" : "Sign in"}
                   </Button>
                   {isLoginInProgress && <LinearProgress color="primary" />}
-                </Box>
-              </Box>
+                </Grid>
+              </Grid>
             </form>
           </Grid>
         </Grid>

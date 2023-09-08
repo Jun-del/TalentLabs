@@ -1,15 +1,12 @@
 import { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
-
 import Grid from "@mui/material/Grid";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import Chip from "@mui/material/Chip";
 import Typography from "@mui/material/Typography";
 import FaceIcon from "@mui/icons-material/Face";
-
 import DarkModeToggle from "../DarkModeToggle/DarkModeToggle";
 
 import {
@@ -17,12 +14,7 @@ import {
   USERNAME_LOCAL_STORAGE_KEY,
 } from "../../constant/constants";
 
-// TODO: search
-const API_KEY = import.meta.env.VITE_API_KEY;
-const PAGE_SIZE = import.meta.env.VITE_PAGE_SIZE;
-const PAGE_NO = import.meta.env.VITE_PAGE_NO;
-
-const Header = ({ keyword, handleSetKeyword }) => {
+const Header = ({ keyword, handleSetKeyword, handleSearch }) => {
   const localStorageUsername = JSON.parse(
     localStorage.getItem(USERNAME_LOCAL_STORAGE_KEY),
   );
@@ -40,19 +32,6 @@ const Header = ({ keyword, handleSetKeyword }) => {
       navigate("/");
     }
   }, [isLoggedIn, navigate]);
-
-  async function handleSearch() {
-    try {
-      const response = await axios.get(
-        `https://newsapi.org/v2/everything?apiKey=${API_KEY}&sortBy=publishedAt&q=${keyword}&searchIn=title&pageSize=${PAGE_SIZE}&page=${PAGE_NO}&language=en`,
-      );
-      const data = response.data;
-      const articles = data.articles;
-      console.log(articles);
-    } catch (error) {
-      console.error(error);
-    }
-  }
 
   // * If user press enter on search text field
   function handleKeyPress(e) {
@@ -73,13 +52,7 @@ const Header = ({ keyword, handleSetKeyword }) => {
   }
 
   return (
-    <Grid
-      container
-      justifyContent="space-between"
-      alignItems="center"
-      padding={1}
-      bgcolor={"lightyellow"}
-    >
+    <Grid container alignItems="center" justifyContent="center">
       <Grid
         item
         xs={12}
@@ -88,7 +61,13 @@ const Header = ({ keyword, handleSetKeyword }) => {
         alignItems="center"
         justifyContent={{ xs: "center", md: "flex-start" }}
       >
-        <Typography variant="h6" component="h1" ml={1}>
+        <Typography
+          variant="h6"
+          component="h1"
+          ml={1}
+          textOverflow="ellipsis"
+          sx={{ userSelect: "none" }}
+        >
           Find My News
         </Typography>
       </Grid>
@@ -145,6 +124,7 @@ const Header = ({ keyword, handleSetKeyword }) => {
 Header.propTypes = {
   keyword: PropTypes.string.isRequired,
   handleSetKeyword: PropTypes.func.isRequired,
+  handleSearch: PropTypes.func.isRequired,
 };
 
 export default Header;
