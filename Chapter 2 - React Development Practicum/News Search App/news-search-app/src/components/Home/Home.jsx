@@ -1,5 +1,5 @@
 import "./Home.css";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import axios from "axios";
 import Grid from "@mui/material/Grid";
 import Header from "../Header/Header";
@@ -28,91 +28,95 @@ function App() {
     setKeyword(searchTerm);
   }
 
-  useEffect(() => {
-    // * Fetch initial search results (search button is clicked) (IIFE)
-    (async function () {
-      // Reset the current page to 1 when the user search for a new keyword
-      setCurrentPage(Number(PAGE_NO));
+  // * Fetch initial search results (when the user search for a keyword)
+  const fetchInitialSearchResults = useCallback(async () => {
+    // Reset the current page to 1 when the user search for a new keyword
+    setCurrentPage(1);
 
-      // If keyword is empty, clear the search result
-      if (keyword === "") {
-        // If keyword and search result is empty, do nothing
-        if (searchResult.length === 0) {
-          return;
-        }
-        setSearchResult([]);
+    // If keyword is empty, clear the search result
+    if (keyword === "") {
+      // If keyword and search result is already empty, do nothing
+      if (searchResult.length === 0) {
         return;
       }
+      setSearchResult([]);
+      return;
+    }
 
-      setSearchIsLoading(true);
+    setSearchIsLoading(true);
 
-      try {
-        const response = await axios.get(
-          `https://newsapi.org/v2/everything?apiKey=${API_KEY}&sortBy=publishedAt&q=${keyword}&searchIn=title&pageSize=${PAGE_SIZE}&page=${PAGE_NO}&language=en`,
-        );
-        const data = response.data;
-        const articles = data.articles;
+    try {
+      const response = await axios.get(
+        `https://newsapi.org/v2/everything?apiKey=${API_KEY}&sortBy=publishedAt&q=${keyword}&searchIn=title&pageSize=${PAGE_SIZE}&page=${PAGE_NO}&language=en`,
+      );
+      const data = response.data;
+      const articles = data.articles;
 
-        if (data.totalResults === 0) {
-          setSearchResult([]);
-        } else {
-          setSearchResult(articles);
-        }
-      } catch (error) {
-        if (DEVENV === "false") {
-          alert(
-            "Requests from the browser are not allowed on the Developer plan from the API, except from localhost.",
-          );
-        }
-        alert(error);
+      if (data.totalResults === 0) {
+        setSearchResult([]);
+      } else {
+        setSearchResult(articles);
       }
-      setSearchIsLoading(false);
-    })();
-
+    } catch (error) {
+      if (DEVENV === "false") {
+        alert(
+          "Requests from the browser are not allowed on the Developer plan from the API, except from localhost.",
+        );
+      }
+      alert(error);
+    }
+    setSearchIsLoading(false);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [keyword]);
 
+  useEffect(() => {
+    fetchInitialSearchResults();
+  }, [fetchInitialSearchResults]);
+
+  // * Load more search results (when the user clicks on the load more button)
   function handleLoadMore() {
     setCurrentPage((prev) => prev + 1);
   }
 
-  useEffect(() => {
+  // * Fetch additional search results (load more button is clicked)
+  const fetchNextPage = useCallback(async () => {
+    // Already at the first page, do nothing
     if (currentPage === 1) {
       return;
     }
 
-    // * Fetch additional search results (load more button is clicked)
-    (async function () {
-      setSearchIsLoading(true);
+    setSearchIsLoading(true);
 
-      try {
-        const response = await axios.get(
-          `https://newsapi.org/v2/everything?apiKey=${API_KEY}&sortBy=publishedAt&q=${keyword}&searchIn=title&pageSize=${PAGE_SIZE}&page=${currentPage}&language=en`,
-        );
+    try {
+      const response = await axios.get(
+        `https://newsapi.org/v2/everything?apiKey=${API_KEY}&sortBy=publishedAt&q=${keyword}&searchIn=title&pageSize=${PAGE_SIZE}&page=${currentPage}&language=en`,
+      );
 
-        const data = response.data;
-        const articles = data.articles;
+      const data = response.data;
+      const articles = data.articles;
 
-        if (data.totalResults > 0) {
-          setSearchResult((prevSearchResult) => [
-            ...prevSearchResult,
-            ...articles,
-          ]);
-        }
-      } catch (error) {
-        if (DEVENV === "false") {
-          alert(
-            "Requests from the browser are not allowed on the Developer plan from the API, except from localhost.",
-          );
-        }
-        alert(error);
+      if (data.totalResults > 0) {
+        setSearchResult((prevSearchResult) => [
+          ...prevSearchResult,
+          ...articles,
+        ]);
       }
+    } catch (error) {
+      if (DEVENV === "false") {
+        alert(
+          "Requests from the browser are not allowed on the Developer plan from the API, except from localhost.",
+        );
+      }
+      alert(error);
+    }
 
-      setSearchIsLoading(false);
-    })();
-
+    setSearchIsLoading(false);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentPage]);
+
+  useEffect(() => {
+    fetchNextPage();
+  }, [fetchNextPage]);
 
   function updateMyFavourite(title, url) {
     const newFavourite = searchResult.find(
@@ -126,11 +130,19 @@ function App() {
         favourite.url === newFavourite.url,
     );
 
+    // Remove the news from favourites if it is already favourited
     if (isAlreadyFavourite) {
-      return;
+      setMyFavourites((prev) =>
+        prev.filter(
+          (prevFavourite) =>
+            prevFavourite.title !== newFavourite.title &&
+            prevFavourite.url !== newFavourite.url,
+        ),
+      );
+    } else {
+      // Add the news to favourites if it is not favourited
+      setMyFavourites((prev) => [...prev, newFavourite]);
     }
-
-    setMyFavourites((prev) => [...prev, newFavourite]);
   }
 
   useEffect(() => {

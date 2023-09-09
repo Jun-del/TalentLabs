@@ -7,20 +7,17 @@ import Typography from "@mui/material/Typography";
 import LinearProgress from "@mui/material/LinearProgress";
 import PasswordTextField from "../custom-components/PasswordTextField";
 import ErrorSnackbar from "../custom-components/ErrorSnackbar";
-
 import registeredUsers from "../../mock-data/mock-registered-users";
 import {
   LOGIN_LOCAL_STORAGE_KEY,
   USERNAME_LOCAL_STORAGE_KEY,
 } from "../../constant/constants";
+import { useHomeContext } from "../../context/HomeContext";
 
 const Login = () => {
   const navigate = useNavigate();
 
-  const localStorageIsUserLoggedIn =
-    JSON.parse(localStorage.getItem(LOGIN_LOCAL_STORAGE_KEY)) || false;
-
-  const [isLoggedIn, setIsLoggedIn] = useState(localStorageIsUserLoggedIn);
+  const { isLoggedIn, setIsLoggedIn } = useHomeContext();
 
   useEffect(() => {
     if (isLoggedIn) {

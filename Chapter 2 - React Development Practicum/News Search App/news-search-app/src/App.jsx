@@ -5,6 +5,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 import Home from "./components/Home/Home";
 import Login from "./components/Login/Login";
+import { HomeContextProvider } from "./context/HomeContext";
 
 function App() {
   const { theme } = useThemeContext();
@@ -13,10 +14,12 @@ function App() {
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Login />} />
-          <Route path="/home" element={<Home />} />
-        </Routes>
+        <HomeContextProvider>
+          <Routes>
+            <Route path="/" element={<Login />} />
+            <Route path="/home" element={<Home />} />
+          </Routes>
+        </HomeContextProvider>
       </BrowserRouter>
     </ThemeProvider>
   );

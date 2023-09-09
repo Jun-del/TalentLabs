@@ -87,7 +87,10 @@ const CustomCard = ({
         <IconButton
           aria-label="add to favorites"
           onClick={() => updateMyFavourite(content, url)}
-          sx={{ "&:hover": { color: red[400] } }}
+          sx={{
+            "&:hover": { color: red[400] },
+          }}
+          // sx={{ "&:hover": { color: red[400] } }}
           color="secondary"
         >
           <FavoriteIcon />
