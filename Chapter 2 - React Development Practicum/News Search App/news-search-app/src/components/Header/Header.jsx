@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import PropTypes from "prop-types";
 import { useNavigate } from "react-router-dom";
 import Grid from "@mui/material/Grid";
 import TextField from "@mui/material/TextField";
@@ -12,18 +11,23 @@ import {
   LOGIN_LOCAL_STORAGE_KEY,
   USERNAME_LOCAL_STORAGE_KEY,
 } from "../../constant/constants";
+import { useHomeContext } from "../../context/HomeContext";
 
-const Header = ({ handleSetKeyword }) => {
+const Header = () => {
   const localStorageUsername = JSON.parse(
     localStorage.getItem(USERNAME_LOCAL_STORAGE_KEY),
   );
-  const localStorageIsUserLoggedIn = JSON.parse(
-    localStorage.getItem(LOGIN_LOCAL_STORAGE_KEY),
-  );
 
+  const {
+    isLoggedIn,
+    setIsLoggedIn,
+    handleSetKeyword,
+    setKeyword,
+    setNews,
+    setSearchResult,
+  } = useHomeContext();
   const [searchTerm, setSearchTerm] = useState(""); // keyword
   const [username, setUsername] = useState(localStorageUsername);
-  const [isLoggedIn, setIsLoggedIn] = useState(localStorageIsUserLoggedIn);
 
   const navigate = useNavigate();
 
@@ -43,6 +47,9 @@ const Header = ({ handleSetKeyword }) => {
   function handleLogout() {
     setIsLoggedIn(false);
     setUsername("");
+    setSearchResult([]);
+    setKeyword("");
+    setNews("");
 
     localStorage.removeItem(USERNAME_LOCAL_STORAGE_KEY);
 
@@ -130,10 +137,6 @@ const Header = ({ handleSetKeyword }) => {
       </Grid>
     </Grid>
   );
-};
-
-Header.propTypes = {
-  handleSetKeyword: PropTypes.func.isRequired,
 };
 
 export default Header;

@@ -14,15 +14,11 @@ import {
 } from "@mui/material/colors";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import { CardActionArea } from "@mui/material";
+import { useHomeContext } from "../../context/HomeContext";
 
-const CustomCard = ({
-  author,
-  date,
-  url,
-  urlToImage,
-  content,
-  updateMyFavourite,
-}) => {
+const CustomCard = ({ author, date, url, urlToImage, content }) => {
+  const { myFavourites, updateMyFavourite } = useHomeContext();
+
   const avatarName = author.charAt(0).toUpperCase();
 
   function getDate(date) {
@@ -89,6 +85,12 @@ const CustomCard = ({
           onClick={() => updateMyFavourite(content, url)}
           sx={{
             "&:hover": { color: red[400] },
+            color: myFavourites.some(
+              (favourite) =>
+                favourite.url === url && favourite.title === content,
+            )
+              ? red[400]
+              : "primary",
           }}
           // sx={{ "&:hover": { color: red[400] } }}
           color="secondary"
@@ -106,7 +108,6 @@ CustomCard.propTypes = {
   url: PropTypes.string, // News url
   urlToImage: PropTypes.string, // News image url
   content: PropTypes.string, // News title
-  updateMyFavourite: PropTypes.func, // Function to add favourite
 };
 
 export default CustomCard;

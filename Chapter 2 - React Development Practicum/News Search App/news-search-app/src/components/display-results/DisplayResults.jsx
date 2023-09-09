@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import Grid from "@mui/material/Grid";
 import Button from "@mui/material/Button";
@@ -6,20 +5,11 @@ import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import LinearProgress from "@mui/material/LinearProgress";
 import NewsItem from "../NewsItems/NewsItem";
+import { useHomeContext } from "../../context/HomeContext";
 
-const DisplayResults = ({
-  keyword,
-  updateMyFavourite,
-  searchResult,
-  handleLoadMore,
-  searchIsLoading,
-}) => {
-  const [news, setNews] = useState([]);
+const DisplayResults = ({ handleLoadMore, searchIsLoading }) => {
+  const { keyword, news } = useHomeContext();
   const title = keyword; // For display purpose, no state needed
-
-  useEffect(() => {
-    setNews(searchResult);
-  }, [searchResult]);
 
   return (
     <>
@@ -65,10 +55,7 @@ const DisplayResults = ({
                   lg={3}
                   key={`${index}-${newsItem.title}`}
                 >
-                  <NewsItem
-                    news={newsItem}
-                    updateMyFavourite={updateMyFavourite}
-                  />
+                  <NewsItem news={newsItem} />
                 </Grid>
               ))}
             </Grid>
@@ -97,23 +84,6 @@ const DisplayResults = ({
 };
 
 DisplayResults.propTypes = {
-  keyword: PropTypes.string,
-  updateMyFavourite: PropTypes.func.isRequired,
-  searchResult: PropTypes.arrayOf(
-    PropTypes.shape({
-      author: PropTypes.string,
-      content: PropTypes.string,
-      description: PropTypes.string,
-      publishedAt: PropTypes.string,
-      source: PropTypes.shape({
-        id: PropTypes.string,
-        name: PropTypes.string,
-      }),
-      title: PropTypes.string,
-      url: PropTypes.string,
-      urlToImage: PropTypes.string,
-    }),
-  ).isRequired,
   handleLoadMore: PropTypes.func.isRequired,
   searchIsLoading: PropTypes.bool.isRequired,
 };

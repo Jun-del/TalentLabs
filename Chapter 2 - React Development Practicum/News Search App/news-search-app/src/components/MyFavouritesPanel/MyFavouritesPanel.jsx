@@ -1,12 +1,13 @@
 import "./MyFavouritesPanel.css";
-import { useThemeContext } from "../../theme/ThemeContextProvider";
-import PropTypes from "prop-types";
 import Grid from "@mui/material/Grid";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
+import { useThemeContext } from "../../theme/ThemeContextProvider";
+import { useHomeContext } from "../../context/HomeContext";
 
-const MyFavouritesPanel = ({ myFavourites, clearMyFavourites }) => {
+const MyFavouritesPanel = () => {
   const { mode } = useThemeContext();
+  const { myFavourites, clearMyFavourites } = useHomeContext();
 
   return (
     <Grid
@@ -60,25 +61,6 @@ const MyFavouritesPanel = ({ myFavourites, clearMyFavourites }) => {
       </Grid>
     </Grid>
   );
-};
-
-MyFavouritesPanel.propTypes = {
-  myFavourites: PropTypes.arrayOf(
-    PropTypes.shape({
-      author: PropTypes.string,
-      content: PropTypes.string,
-      description: PropTypes.string,
-      publishedAt: PropTypes.string,
-      source: PropTypes.shape({
-        id: PropTypes.string,
-        name: PropTypes.string,
-      }),
-      title: PropTypes.string,
-      url: PropTypes.string,
-      urlToImage: PropTypes.string,
-    }),
-  ).isRequired,
-  clearMyFavourites: PropTypes.func.isRequired,
 };
 
 export default MyFavouritesPanel;

@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import CustomCard from "../custom-components/CustomCard";
 
-const NewsItem = ({ news, updateMyFavourite }) => {
+const NewsItem = ({ news }) => {
   const { source, publishedAt, url, urlToImage, title } = news;
 
   return (
@@ -11,13 +11,11 @@ const NewsItem = ({ news, updateMyFavourite }) => {
       url={url}
       urlToImage={urlToImage}
       content={title}
-      updateMyFavourite={updateMyFavourite}
     />
   );
 };
 
 NewsItem.propTypes = {
-  updateMyFavourite: PropTypes.func.isRequired,
   news: PropTypes.shape({
     author: PropTypes.string,
     content: PropTypes.string,
