@@ -1,44 +1,42 @@
-// const theme = {
-//   palette: {
-//     primary: {
-//       main: "#556cd6",
-//     },
-//     secondary: {
-//       main: "#19857b",
-//     },
-//     error: {
-//       main: red.A400,
-//     },
-//   },
-// };
-
 export const getDesignTokens = (mode) => ({
   palette: {
     mode,
     ...(mode === "light"
       ? {
-          // ? palette values for light mode
+          // palette values for light mode
           primary: {
-            main: "#556cd6",
+            main: "#0d5939",
           },
-          // divider: amber[200],
-          // text: {
-          //   primary: grey[900],
-          //   secondary: grey[800],
-          // },
+          secondary: {
+            main: "#a4f4a5",
+          },
+          divider: "#1cd835",
+          background: {
+            default: "#edfcf6",
+            paper: "#ffffff",
+          },
+          text: {
+            primary: "#010906",
+            secondary: "#05290a",
+          },
         }
       : {
-          // ? palette values for dark mode
-          // primary: deepOrange,
-          // divider: deepOrange[700],
+          // palette values for dark mode
+          primary: {
+            main: "#97f2a3",
+          },
+          secondary: {
+            main: "#cef8e6",
+          },
+          divider: "#9bf2a6",
           background: {
-            default: "#121212",
+            default: "#05290a",
             paper: "#121212",
           },
-          // text: {
-          //   primary: "#fff",
-          //   secondary: grey[500],
-          // },
+          text: {
+            primary: "#d6fadb",
+            secondary: "#ffffff",
+          },
         }),
   },
 });

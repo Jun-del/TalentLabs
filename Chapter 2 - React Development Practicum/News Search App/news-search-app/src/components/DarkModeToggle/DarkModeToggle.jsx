@@ -11,7 +11,11 @@ const DarkModeToggle = () => {
       aria-label={mode === "dark" ? "dark mode" : "light mode"}
       onClick={toggleColorMode}
     >
-      {mode === "dark" ? <LightModeIcon /> : <DarkModeIcon />}
+      {mode === "dark" ? (
+        <LightModeIcon color="primary" />
+      ) : (
+        <DarkModeIcon color="success" />
+      )}
     </IconButton>
   );
 };

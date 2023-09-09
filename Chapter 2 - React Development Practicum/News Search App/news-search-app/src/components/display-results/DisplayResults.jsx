@@ -7,13 +7,15 @@ import Box from "@mui/material/Box";
 import LinearProgress from "@mui/material/LinearProgress";
 import NewsItem from "../NewsItems/NewsItem";
 
-const DisplayResults = ({ keyword, updateMyFavourite, searchResult, page }) => {
+const DisplayResults = ({
+  keyword,
+  updateMyFavourite,
+  searchResult,
+  handleLoadMore,
+  searchIsLoading,
+}) => {
   const [news, setNews] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
-
-  function handleLoadMore() {
-    page += 1;
-  }
+  const title = keyword; // For display purpose, no state needed
 
   useEffect(() => {
     setNews(searchResult);
@@ -21,10 +23,16 @@ const DisplayResults = ({ keyword, updateMyFavourite, searchResult, page }) => {
 
   return (
     <>
-      {news.length < 1 ? (
-        <Grid container>
+      {news.length === 0 && !searchIsLoading ? (
+        <Grid container height="100%">
           <Grid item xs={12}>
-            <Typography variant="h3">Please search for a topic</Typography>
+            {keyword === "" ? (
+              <Typography variant="h3">Please search for a topic</Typography>
+            ) : (
+              <Typography variant="h3">
+                Sorry, no news found based on your search. Please try again.
+              </Typography>
+            )}
           </Grid>
         </Grid>
       ) : (
@@ -36,6 +44,10 @@ const DisplayResults = ({ keyword, updateMyFavourite, searchResult, page }) => {
           justifyContent="space-between"
           alignItems="center"
         >
+          <Grid item alignSelf="start">
+            <Typography variant="h6">Search results for {title}:</Typography>
+          </Grid>
+
           <Grid item>
             {/* Grid for display results card */}
             <Grid
@@ -44,8 +56,15 @@ const DisplayResults = ({ keyword, updateMyFavourite, searchResult, page }) => {
               columns={{ xs: 4, sm: 8, md: 12, lg: 12 }}
               alignItems="stretch"
             >
-              {news.map((newsItem) => (
-                <Grid item xs={2} sm={4} md={4} lg={3} key={newsItem.title}>
+              {news.map((newsItem, index) => (
+                <Grid
+                  item
+                  xs={2}
+                  sm={4}
+                  md={4}
+                  lg={3}
+                  key={`${index}-${newsItem.title}`}
+                >
                   <NewsItem
                     news={newsItem}
                     updateMyFavourite={updateMyFavourite}
@@ -55,25 +74,30 @@ const DisplayResults = ({ keyword, updateMyFavourite, searchResult, page }) => {
             </Grid>
           </Grid>
 
-          <Grid item>
-            <Button variant="contained" onClick={handleLoadMore}>
-              Load More
-            </Button>
-          </Grid>
-        </Grid>
-      )}
+          {news.length !== 0 && (
+            <Grid item marginBottom={1}>
+              <Button variant="contained" onClick={handleLoadMore}>
+                Load More
+              </Button>
+            </Grid>
+          )}
 
-      {isLoading && (
-        <Box sx={{ width: "100%", marginTop: "1rem" }}>
-          <LinearProgress />
-        </Box>
+          <Box
+            sx={{
+              width: "100%",
+              visibility: searchIsLoading ? "visible" : "hidden",
+            }}
+          >
+            <LinearProgress />
+          </Box>
+        </Grid>
       )}
     </>
   );
 };
 
 DisplayResults.propTypes = {
-  keyword: PropTypes.string.isRequired,
+  keyword: PropTypes.string,
   updateMyFavourite: PropTypes.func.isRequired,
   searchResult: PropTypes.arrayOf(
     PropTypes.shape({
@@ -90,7 +114,8 @@ DisplayResults.propTypes = {
       urlToImage: PropTypes.string,
     }),
   ).isRequired,
-  page: PropTypes.number.isRequired,
+  handleLoadMore: PropTypes.func.isRequired,
+  searchIsLoading: PropTypes.bool.isRequired,
 };
 
 export default DisplayResults;

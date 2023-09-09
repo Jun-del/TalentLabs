@@ -8,7 +8,7 @@ import LinearProgress from "@mui/material/LinearProgress";
 import PasswordTextField from "../custom-components/PasswordTextField";
 import ErrorSnackbar from "../custom-components/ErrorSnackbar";
 
-import registeredUsers from "../../data/mock-registered-users";
+import registeredUsers from "../../mock-data/mock-registered-users";
 import {
   LOGIN_LOCAL_STORAGE_KEY,
   USERNAME_LOCAL_STORAGE_KEY,
@@ -94,6 +94,7 @@ const Login = () => {
               variant="h1"
               textAlign="center"
               sx={{ userSelect: "none" }}
+              color={"text.secondary"}
             >
               Find My News
             </Typography>
@@ -105,6 +106,7 @@ const Login = () => {
               <Grid container direction="column" flexWrap="wrap" gap={2}>
                 <Grid item>
                   <TextField
+                    autoFocus
                     fullWidth
                     required
                     type="text"
@@ -114,6 +116,7 @@ const Login = () => {
                     error={isLoginError}
                     value={username}
                     onChange={handleUsernameChange}
+                    color="primary"
                   />
                 </Grid>
 
@@ -122,6 +125,7 @@ const Login = () => {
                     password={password}
                     handlePasswordChange={handlePasswordChange}
                     isLoginError={isLoginError}
+                    color="primary"
                   />
                 </Grid>
 

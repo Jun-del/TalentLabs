@@ -1,5 +1,4 @@
 import PropTypes from "prop-types";
-
 import CustomCard from "../custom-components/CustomCard";
 
 const NewsItem = ({ news, updateMyFavourite }) => {

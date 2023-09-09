@@ -9,7 +9,8 @@ import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import {
   red,
-  // blue, green
+  green,
+  // blue
 } from "@mui/material/colors";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import { CardActionArea } from "@mui/material";
@@ -59,7 +60,8 @@ const CustomCard = ({
     >
       <CardHeader
         avatar={
-          <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
+          // <Avatar sx={{ bgcolor: getRandomColor(colors) }} aria-label="recipe">
+          <Avatar sx={{ bgcolor: green[500] }} aria-label="recipe">
             {avatarName}
           </Avatar>
         }
@@ -67,7 +69,7 @@ const CustomCard = ({
         subheader={getDate(date)}
       />
 
-      <CardActionArea href={url} target="_blank">
+      <CardActionArea href={url} target="_blank" rel="noreferrer">
         <CardMedia
           component="img"
           height="250"
@@ -86,6 +88,7 @@ const CustomCard = ({
           aria-label="add to favorites"
           onClick={() => updateMyFavourite(content, url)}
           sx={{ "&:hover": { color: red[400] } }}
+          color="secondary"
         >
           <FavoriteIcon />
         </IconButton>
@@ -95,12 +98,12 @@ const CustomCard = ({
 };
 
 CustomCard.propTypes = {
-  author: PropTypes.string.isRequired, // News source
-  date: PropTypes.string.isRequired, // Published date
+  author: PropTypes.string, // News source
+  date: PropTypes.string, // Published date
   url: PropTypes.string, // News url
-  urlToImage: PropTypes.string.isRequired, // News image url
-  content: PropTypes.string.isRequired, // News title
-  updateMyFavourite: PropTypes.func.isRequired,
+  urlToImage: PropTypes.string, // News image url
+  content: PropTypes.string, // News title
+  updateMyFavourite: PropTypes.func, // Function to add favourite
 };
 
 export default CustomCard;

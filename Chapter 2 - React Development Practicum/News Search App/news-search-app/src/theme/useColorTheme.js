@@ -4,18 +4,19 @@ import { getDesignTokens } from "./theme";
 import { DARK_MODE_LOCAL_STORAGE_KEY } from "../constant/constants";
 
 export const useColorTheme = () => {
-  // * Check the user's dark mode settings
-  const isDarkMode =
-    window.matchMedia &&
-    window.matchMedia("(prefers-color-scheme:dark)").matches;
-
-  const [mode, setMode] = useState(isDarkMode ? "dark" : "light");
+  const [mode, setMode] = useState("light");
 
   useEffect(() => {
     // * Check the user's local storage for dark mode settings
     const lightDarkMode = localStorage.getItem(DARK_MODE_LOCAL_STORAGE_KEY);
     if (lightDarkMode && ["light", "dark"].includes(lightDarkMode)) {
       setMode(lightDarkMode);
+    } else {
+      // * Check the user's OS color scheme
+      const isDarkMode =
+        window.matchMedia &&
+        window.matchMedia("(prefers-color-scheme:dark)").matches;
+      setMode(isDarkMode ? "dark" : "light");
     }
   }, []);
 

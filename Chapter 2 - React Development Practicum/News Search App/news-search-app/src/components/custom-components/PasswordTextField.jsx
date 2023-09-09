@@ -7,8 +7,13 @@ import IconButton from "@mui/material/IconButton";
 import InputAdornment from "@mui/material/InputAdornment";
 
 const PasswordTextField = (props) => {
-  const { password, handlePasswordChange, isLoginError, passwordVisible } =
-    props;
+  const {
+    password,
+    handlePasswordChange,
+    isLoginError,
+    passwordVisible,
+    ...otherProps
+  } = props;
 
   const [showPassword, setShowPassword] = useState(passwordVisible);
 
@@ -18,6 +23,7 @@ const PasswordTextField = (props) => {
 
   return (
     <TextField
+      {...otherProps}
       fullWidth
       required
       type={showPassword ? "text" : "password"}

@@ -7,8 +7,12 @@ a {
   transition: box-shadow 0.3s;
 }
 
-.favourite-item:hover {
-  box-shadow: 0 0 11px rgba(33, 33, 33, 0.2);
+.favourite-item-light:hover {
+  box-shadow: 0 0 11px #1cd835;
+}
+
+.favourite-item-dark:hover {
+  box-shadow: 0 0 11px #9bf2a6;
 }
 
 /* To enable Dark Mode */
