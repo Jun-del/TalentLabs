@@ -2,9 +2,9 @@ import { createTheme } from "@mui/material/styles";
 import { createContext, useContext } from "react";
 
 const ThemeContext = createContext({
+  theme: createTheme(),
   mode: "light",
   toggleColorMode: () => {},
-  theme: createTheme(),
 });
 
 export default ThemeContext;

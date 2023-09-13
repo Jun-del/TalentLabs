@@ -12,32 +12,40 @@ const bubbleSort = (arr) => {
   // Main Logic
   // Add your code here
 
-  for (let i = 0; i < inputArr.length - 1; i++) {
-    let swapped = false;
+  let swapped = false;
 
-    for (let j = 0; j < inputArr.length - i - 1; j++) {
+  for (let i = 0; i < inputArr.length; i++) {
+    swapped = false;
+    for (let j = 0; j < inputArr.length - 1 - i; j++) {
       if (inputArr[j] > inputArr[j + 1]) {
-        [inputArr[j], inputArr[j + 1]] = [inputArr[j + 1], inputArr[j]];
+        const temp = inputArr[j];
+        inputArr[j] = inputArr[j + 1];
+        inputArr[j + 1] = temp;
         swapped = true;
       }
     }
 
-    if (!swapped) {
+    if (swapped === false) {
       break;
     }
   }
+
   return inputArr;
 
-  // Solution 2:
-  // 	for (let i = 0; i < arr.length; ++i) {
-  // 		for (let j = 0; j < arr.length - 1 - i; ++j) {
-  // 				if (arr[j] > arr[j + 1]) {
-  // 						const temp = arr[j];
-  // 						arr[j] = arr[j + 1];
-  // 						arr[j + 1] = temp;
-  // 				}
-  // 		}
-  // }
+  // let swapped = false;
+
+  // do {
+  //   swapped = false;
+
+  //   for (let i = 0; i < inputArr.length; i++) {
+  //     if (inputArr[i] > inputArr[i + 1]) {
+  //       [inputArr[i], inputArr[i + 1]] = [inputArr[i + 1], inputArr[i]];
+  //       swapped = true;
+  //     }
+  //   }
+  // } while (swapped);
+
+  // return inputArr;
 };
 
 // DO NOT MODIFY CODE BELOW

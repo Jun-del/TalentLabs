@@ -6,7 +6,7 @@ const assert = require("assert");
 
 const factorial = (input) => {
   // Put your code below
-  if (input === 1 || input === 0) {
+  if (input < 2) {
     return 1;
   }
 

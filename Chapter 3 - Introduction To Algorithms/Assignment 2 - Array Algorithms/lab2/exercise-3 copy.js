@@ -9,14 +9,31 @@ const assert = require("assert");
 
 const findPairs = (arr, targetSum) => {
   // Add your code here
+  // const result = [];
+
+  // for (let i = 0; i < arr.length; i++) {
+  //   for (let j = i + 1; j < arr.length; j++) {
+  //     if (arr[i] + arr[j] === targetSum) {
+  //       result.push([arr[i], arr[j]]);
+  //     }
+  //   }
+  // }
+
+  // return result;
+
+  const cache = new Map();
+
   const result = [];
 
   for (let i = 0; i < arr.length; i++) {
-    for (let j = i + 1; j < arr.length; j++) {
-      if (arr[i] + arr[j] === targetSum) {
-        result.push([arr[i], arr[j]]);
-      }
+    const value = arr[i];
+    const compliment = targetSum - value;
+
+    if (cache.has(compliment)) {
+      result.push([compliment, value]);
     }
+
+    cache.set(value, true);
   }
 
   return result;

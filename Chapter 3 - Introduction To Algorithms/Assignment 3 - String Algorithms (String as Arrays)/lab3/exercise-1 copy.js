@@ -13,6 +13,10 @@ const assert = require("assert");
 
 const findSubstring = (inputString, targetString) => {
   // Add your code here
+  if (inputString.length < 2) {
+    return -1;
+  }
+
   for (let i = 0; i < inputString.length; i++) {
     for (let j = 0; j < targetString.length; j++) {
       if (inputString[i + j] !== targetString[j]) {

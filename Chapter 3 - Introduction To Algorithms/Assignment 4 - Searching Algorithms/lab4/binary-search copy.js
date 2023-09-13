@@ -6,21 +6,21 @@ const assert = require("assert");
 
 const binarySearch = (arr, target) => {
   // Add your code here
-  let start = 0;
-  let end = arr.length;
+  let low = 0;
+  let high = arr.length;
 
   do {
-    const middle = Math.floor(start + (end - start) / 2);
+    const middle = Math.floor(low + (high - low) / 2);
     const value = arr[middle];
 
     if (value === target) {
       return middle;
     } else if (value < target) {
-      start = middle + 1;
-    } else if (value > target) {
-      end = middle;
+      low = middle + 1;
+    } else {
+      high = middle;
     }
-  } while (start < end);
+  } while (low < high);
 
   return -1;
 };

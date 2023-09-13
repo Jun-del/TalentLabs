@@ -12,34 +12,17 @@ const insertionSort = (arr) => {
   // Main Logic
   // Add your code here
 
-  for (let i = 0; i < inputArr.length; i++) {
+  for (let i = 1; i < inputArr.length; i++) {
     const valueToInsert = inputArr[i];
-    let j = i - 1;
 
-    while (j >= 0 && inputArr[j] > valueToInsert) {
+    let j;
+    for (j = i - 1; j >= 0 && inputArr[j] > valueToInsert; j--) {
       inputArr[j + 1] = inputArr[j];
-      j--;
     }
-
     inputArr[j + 1] = valueToInsert;
   }
 
   return inputArr;
-
-  // solution
-  // for (let i = 1; i < nums.length; i++) {
-  //   const valueToInsert = nums[i]; // 1
-  //   let j = i - 1; // 0
-  //   while (j >= 0 && nums[j] > valueToInsert) {
-  //     // 0 > 1
-  //     nums[j + 1] = nums[j]; /// 1 = 0
-  //     j--; // -1
-  //   }
-  //   // 0 = value to insert
-  //   nums[j + 1] = valueToInsert;
-  // }
-
-  // return nums;
 };
 
 // DO NOT MODIFY CODE BELOW

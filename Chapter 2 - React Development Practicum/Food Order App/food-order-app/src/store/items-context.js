@@ -1,6 +1,7 @@
-import { createContext } from "react";
+import { createContext, useContext } from "react";
 
-const itemContext = createContext({
+const itemsContext = createContext({
+  /* eslint-disable no-unused-vars */
   itemsDate: [],
   switchPage: null,
   addNewItem: (item) => {},
@@ -9,4 +10,6 @@ const itemContext = createContext({
   togglePage: () => {},
 });
 
-export default itemContext;
+export default itemsContext;
+
+export const useItemscontext = () => useContext(itemsContext);

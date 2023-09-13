@@ -27,6 +27,7 @@ export const useColorTheme = () => {
   };
 };
 
+// Helper function
 function getUserDefaultTheme() {
   const localStorageMode = localStorage.getItem(MODE_LOCAL_STORAGE_KEY);
 
