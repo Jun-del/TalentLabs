@@ -3,12 +3,16 @@ import cartContext from "./cart-context";
 import { useState } from "react";
 
 export default function CartProvider({ children }) {
-  const [item, setItem] = useState([]);
+  // ! Default: true = User page, false = Admin page
+  // ! items-provider: to store the food, cart-provider: to store only items in the cart
+
+  // ! This is used for cart only not the menu items
+  const [cartItems, setCartItems] = useState([]);
 
   const totalAmount = 1;
 
   function addItem(item) {
-    setItem(item);
+    setCartItems((prevcartItems) => [...prevcartItems, item]);
   }
 
   function removeItem(id) {
@@ -16,7 +20,7 @@ export default function CartProvider({ children }) {
   }
 
   const value = {
-    item,
+    item: cartItems,
     totalAmount,
     addItem,
     removeItem,

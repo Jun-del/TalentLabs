@@ -1,6 +1,6 @@
 import "./App.css";
-import { ThemeProvider } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
+import { ThemeProvider } from "@mui/material/styles";
 import { useItemscontext } from "./store/items-context";
 import { useThemeContext } from "./theme/theme-context";
 import Users from "./pages/Users";
@@ -14,7 +14,8 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      {itemsContext.switchPage ? <Users /> : <Admin />}
+
+      {!itemsContext.switchPage ? <Users /> : <Admin />}
       <Footer />
     </ThemeProvider>
   );

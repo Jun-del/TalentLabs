@@ -3,13 +3,25 @@ import itemsContext from "./items-context";
 import { useState } from "react";
 
 export default function ItemsProvider({ children }) {
-  // @ Default: true = User page, false = Admin page
+  // ! Default: true = User page, false = Admin page
+  // ! items-provider: to store the food, cart-provider: to store only items in the cart
   const [switchPage, setSwitchPage] = useState(true);
 
-  const itemsDate = [];
+  const [menuItemsData, setMenuItemsData] = useState([]);
+  /**
+   *  Mock for menuItemsData = [
+   * {
+   *  id: string,
+   *  name: string,
+   *  description: string,
+   *  price: float/double,
+   *  image: ,
+   * }
+   * ]
+   * */
 
-  function addNewItem(item) {
-    console.log(item);
+  function addNewItem(newItem) {
+    setMenuItemsData((prevData) => [...prevData, newItem]);
   }
 
   function removeItem(id) {
@@ -25,7 +37,7 @@ export default function ItemsProvider({ children }) {
   }
 
   const value = {
-    itemsDate,
+    itemsData: menuItemsData,
     switchPage,
     addNewItem,
     removeItem,
