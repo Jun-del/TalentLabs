@@ -30,13 +30,17 @@ tags: ["browser", "javascript", "react"]
 
 ### [Variables](https://www.freecodecamp.org/news/var-let-and-const-whats-the-difference/): **let**, **const**, var (Var is not recommended in modern JavaScript, use let or const instead)
 
+- [Variables are hoisted to the top of the file](https://blog.devgenius.io/hoisting-in-javascript-c90f6d03d2df), but since let and const are not initialized, they are in the temporal dead zone (TDZ)
+- TDZ is a state where you cannot access the variable before it is declared
+- var by default is undefined, let and const are not initialized
+
 - _Hoisting is the default behavior of moving all the declarations at the top of the scope before code execution_
 
 ```js
 // let
 let x = 1;
 let a = 8, // declare multiple variables
-	b = 9;
+  b = 9;
 x = 2;
 console.log(x, a, b); // 2 8 9
 
@@ -45,7 +49,7 @@ const y = 1; // y is always 1
 y = 2;
 console.log(y); // TypeError: Assignment to constant variable.
 
-// var (same as let but no block scope, hoisting)
+// var (same as let but no block scope)
 var z = 1;
 z = 2;
 console.log(z); // 2
@@ -65,22 +69,22 @@ var y = 2;
 const z = 3;
 
 function foo() {
-	// Function scope
-	let x = 4;
-	var y = 5; // do not modify global variables
-	const z = 6; // declare new variables
-	console.log(x, y, z); // 4 5 6
+  // Function scope
+  let x = 4;
+  var y = 5; // do not modify global variables
+  const z = 6; // declare new variables
+  console.log(x, y, z); // 4 5 6
 }
 
 foo();
 console.log(x, y, z); // 1 2 3
 
 if (true) {
-	// Block scope
-	let x = 7;
-	var y = 8; // reassign global variables
-	const z = 9;
-	console.log(x, y, z); // 7 8 9
+  // Block scope
+  let x = 7;
+  var y = 8; // reassign global variables
+  const z = 9;
+  console.log(x, y, z); // 7 8 9
 }
 
 console.log(x, y, z); // 1 8 3
@@ -122,9 +126,9 @@ const sym = Symbol();
 
 // Object
 const address = {
-	// key-value pairs
-	city: "Boston",
-	state: "MA",
+  // key-value pairs
+  city: "Boston",
+  state: "MA",
 };
 
 const hobbies = ["movies", "music"]; // array (object)
@@ -216,9 +220,9 @@ console.log(x + " " + y); // John Doe
 let age = 20;
 let voteable;
 if (age < 18) {
-	voteable = "Too young";
+  voteable = "Too young";
 } else {
-	voteable = "Old enough";
+  voteable = "Old enough";
 }
 
 // Ternary operator
@@ -228,8 +232,8 @@ console.log(voteable); // Old enough
 
 // Comma operator (,)
 let x = 5,
-	y = 6,
-	z = 7;
+  y = 6,
+  z = 7;
 console.log(x + y + z); // 18
 
 // typeof operator (returns the type of a variable)
@@ -249,99 +253,99 @@ console.log(Array.isArray(cars)); // true
 // if statement (if condition is true, do something)
 const x = 10;
 if (x === 10) {
-	console.log("x is 10");
+  console.log("x is 10");
 }
 
 // if else statement (if condition is true, do something,
 // else do something else)
 const x = 10;
 if (x === 10) {
-	console.log("x is 10");
+  console.log("x is 10");
 } else {
-	console.log("x is not 10");
+  console.log("x is not 10");
 }
 
 // if, else if, else statement (if condition is true, do something,
 // else if condition is true, do something, else do something else)
 const x = 10;
 if (x === 10) {
-	console.log("x is 10");
+  console.log("x is 10");
 } else if (x > 10) {
-	console.log("x is greater than 10");
+  console.log("x is greater than 10");
 } else {
-	// x < 10
-	console.log("x is less than 10");
+  // x < 10
+  console.log("x is less than 10");
 }
 
 // switch statement (an alternative to if else if else)
 const x = 10;
 switch (x) {
-	case 10: // if x is 10, do something
-		console.log("x is 10");
-		break; // break out of the switch statement
-	case 20:
-		console.log("x is 20");
-		break;
-	default: // the default case if no case matches, like else
-		console.log("x is not 10 or 20");
-		break;
+  case 10: // if x is 10, do something
+    console.log("x is 10");
+    break; // break out of the switch statement
+  case 20:
+    console.log("x is 20");
+    break;
+  default: // the default case if no case matches, like else
+    console.log("x is not 10 or 20");
+    break;
 }
 
 // for loop (for a certain number of times, do something)
 //  (initialization, condition, increment)
 for (let i = 0; i < 10; i++) {
-	console.log(i); // 0 1 2 3 4 5 6 7 8 9
+  console.log(i); // 0 1 2 3 4 5 6 7 8 9
 }
 
 // for of loop (for each item in an array, do something)
 const array = [1, 2, 3];
 // cannot set condition, loops all items in array
 for (const item of array) {
-	console.log(item); // 1 2 3
+  console.log(item); // 1 2 3
 }
 
 // while (while condition is true, do something)
 let i = 0;
 while (i < 10) {
-	console.log(i); // 0 1 2 3 4 5 6 7 8 9
-	i++;
+  console.log(i); // 0 1 2 3 4 5 6 7 8 9
+  i++;
 }
 
 // do while (do something first, then while condition is true, continue)
 let i = 0;
 do {
-	console.log(i); // 0 1 2 3 4 5 6 7 8 9
-	i++;
+  console.log(i); // 0 1 2 3 4 5 6 7 8 9
+  i++;
 } while (i < 10);
 
 // break (break out of a loop or switch statement early)
 for (let i = 0; i < 10; i++) {
-	// skip this if unless i is 5
-	if (i === 5) {
-		break; // exit the loop
-	}
-	console.log(i); // 0 1 2 3 4
+  // skip this if unless i is 5
+  if (i === 5) {
+    break; // exit the loop
+  }
+  console.log(i); // 0 1 2 3 4
 }
 
 // continue (skip an iteration of a loop)
 for (let i = 0; i < 10; i++) {
-	if (i === 5) {
-		continue; // skip this iteration but continue the loop
-	}
-	console.log(i); // 0 1 2 3 4 6 7 8 9
+  if (i === 5) {
+    continue; // skip this iteration but continue the loop
+  }
+  console.log(i); // 0 1 2 3 4 6 7 8 9
 }
 
 // try catch finally (try to execute some code, if there is an error,
 // catch the error and do something, finally do something regardless)
 try {
-	// try to execute this code
-	console.log("Hello");
+  // try to execute this code
+  console.log("Hello");
 } catch (err) {
-	// if there is an error, catch the error and do something
-	console.log(err);
+  // if there is an error, catch the error and do something
+  console.log(err);
 } finally {
-	// do something regardless, all code in finally will be executed
-	console.log("World");
+  // do something regardless, all code in finally will be executed
+  console.log("World");
 }
 ```
 
@@ -352,7 +356,7 @@ try {
 ```js
 // Function declaration (function keyword, name, parameters, body)
 function greet(name) {
-	console.log("Hello " + name);
+  console.log("Hello " + name);
 }
 
 // Function call (name of function, arguments passed as parameters)
@@ -364,7 +368,7 @@ greet("Alice"); // Hello Alice
 // A function can return a value back to the caller
 // If a function does not return a value, it returns undefined
 function greet(name) {
-	return "Hello " + name;
+  return "Hello " + name;
 }
 
 const greeting = greet("John Doe");
@@ -372,21 +376,21 @@ console.log(greeting); // Hello John Doe
 
 // If a function has return statement without a value, it exits the function
 function greet(name) {
-	return; // exits the function (next line will be unreachable)
-	console.log("Hello " + name); // this line will not be executed )
+  return; // exits the function (next line will be unreachable)
+  console.log("Hello " + name); // this line will not be executed )
 }
 
 // Function expression (anonymous function, function keyword)
 // You can give a default value to a parameter
 const greet = function (name = "John Doe") {
-	console.log("Hello", name);
+  console.log("Hello", name);
 };
 
 // Arrow function (anonymous function, arrow function, parameters, body)
 // You can omit the parentheses if there is only one parameter
 // const greet = name => ...
 const greet = (name) => {
-	console.log(`Hello ${name}`);
+  console.log(`Hello ${name}`);
 };
 
 // Arrow function with implicit return
@@ -398,20 +402,20 @@ const double = (num) => num * 2;
 // they inherit the this of the parent scope (further reading yourself)
 // Regular function as an object method
 const person = {
-	name: "John",
-	greet: function () {
-		console.log(`Hello, my name is ${this.name}`);
-	},
+  name: "John",
+  greet: function () {
+    console.log(`Hello, my name is ${this.name}`);
+  },
 };
 
 person.greet(); // Output: Hello, my name is John
 
 // Arrow function as an object method
 const personArrow = {
-	name: "Alice",
-	greet: () => {
-		console.log(`Hello, my name is ${this.name}`);
-	},
+  name: "Alice",
+  greet: () => {
+    console.log(`Hello, my name is ${this.name}`);
+  },
 };
 
 personArrow.greet(); // Output: Hello, my name is undefined
@@ -419,7 +423,7 @@ personArrow.greet(); // Output: Hello, my name is undefined
 // Immediately Invoked Function Expression (IIFE)
 // (function () {})(); (anonymous function, function keyword, parentheses)
 (function () {
-	console.log("Hello"); // Hello (will be executed immediately)
+  console.log("Hello"); // Hello (will be executed immediately)
 })();
 
 // Spread in function parameters (combining multiple arguments into an array)
@@ -433,9 +437,9 @@ console.log(mergedArray); // Output: [1, 2, 3, 4, 5, 6]
 // Rest in function parameters (destructuring an array
 // into individual variables)
 function displayNames(first, second, ...others) {
-	console.log(`First Name: ${first}`); // First Name: John
-	console.log(`Second Name: ${second}`); // Second Name: Alice
-	console.log(`Others: ${others.join(", ")}`); // Others: Bob, Eve, Charlie
+  console.log(`First Name: ${first}`); // First Name: John
+  console.log(`Second Name: ${second}`); // Second Name: Alice
+  console.log(`Others: ${others.join(", ")}`); // Others: Bob, Eve, Charlie
 }
 
 displayNames("John", "Alice", "Bob", "Eve", "Charlie");
@@ -458,9 +462,9 @@ displayNames("John", "Alice", "Bob", "Eve", "Charlie");
 // Object literal notation (key-value pairs)
 // a person object
 const person = {
-	name: "John", // key (name) : value ("John")
-	age: 30, // key (age) : value (30)
-	job: "Developer", // key (job) : value ("Developer")
+  name: "John", // key (name) : value ("John")
+  age: 30, // key (age) : value (30)
+  job: "Developer", // key (job) : value ("Developer")
 };
 
 // Using 'object' as a constructor (not recommended)
@@ -479,13 +483,13 @@ person["state"] = "MA";
 // Object methods (functions inside an object)
 // Dont use arrow functions for object methods (no this keyword)
 const person = {
-	name: "John",
-	age: 30,
-	job: "Developer",
-	greet: function () {
-		// this refers to the current object itself
-		console.log(`Hello, my name is ${this.name}`);
-	},
+  name: "John",
+  age: 30,
+  job: "Developer",
+  greet: function () {
+    // this refers to the current object itself
+    console.log(`Hello, my name is ${this.name}`);
+  },
 };
 
 person.greet(); // Output: Hello, my name is John
@@ -501,9 +505,9 @@ const age = 30;
 const job = "Developer";
 
 const person = {
-	name, // name: name
-	age, // age: age
-	job, // job: job
+  name, // name: name
+  age, // age: age
+  job, // job: job
 };
 
 // Destructuring (extracting data from objects)
@@ -530,7 +534,7 @@ console.log(Object.hasOwn(person, "name"));
 // Looping through object keys
 // for in loop (loop through object keys)
 for (const key in person) {
-	console.log(key); // name, age, job
+  console.log(key); // name, age, job
 }
 
 // Check if a property exists in an object
@@ -548,25 +552,25 @@ console.log(Object.entries(person));
 
 // Object.entries() with loop
 Object.entries(person).forEach(([key, value]) => {
-	console.log(`${key}: ${value}`);
+  console.log(`${key}: ${value}`);
 }); // name: John, age: 30, job: Developer
 
 for (const [key, value] of Object.entries(object1)) {
-	console.log(`${key}: ${value}`);
+  console.log(`${key}: ${value}`);
 } // name: John, age: 30, job: Developer
 
 // Object.assign() (copies the values of all enumerable own properties
 // from one or more source objects to a target object)
 const person = {
-	name: "John",
-	age: 30,
-	job: "Developer",
+  name: "John",
+  age: 30,
+  job: "Developer",
 };
 
 const person2 = {
-	name: "Alice",
-	age: 20,
-	job: "Designer",
+  name: "Alice",
+  age: 20,
+  job: "Designer",
 };
 
 const mergedPerson = Object.assign({}, person, person2);
@@ -574,7 +578,7 @@ console.log(mergedPerson);
 
 // Object as Function Parameters (pass in an object as a parameter)
 function displayPersonInfo(person) {
-	console.log(`Name: ${person.name}, Age: ${person.age}`);
+  console.log(`Name: ${person.name}, Age: ${person.age}`);
 }
 
 displayPersonInfo(person); // Output: Name: John, Age: 30
@@ -597,12 +601,12 @@ console.log(person.location?.city); // undefined
 ```js
 // Original object
 const person = {
-	name: "John",
-	age: 30,
-	address: {
-		city: "Boston",
-		zip: "10001",
-	},
+  name: "John",
+  age: 30,
+  address: {
+    city: "Boston",
+    zip: "10001",
+  },
 };
 
 // Shalllow copy the original object
@@ -624,21 +628,21 @@ console.log(shallowCopiedPerson); // Shallow copied object is modified
 
 // Shallow copy using spread operator
 const originalObject = {
-	name: "John",
-	age: 30,
-	address: {
-		city: "New York",
-		zip: "10001",
-		country: {
-			name: "United States",
-		},
-	},
+  name: "John",
+  age: 30,
+  address: {
+    city: "New York",
+    zip: "10001",
+    country: {
+      name: "United States",
+    },
+  },
 };
 
 // Fake deep copy using spread operator
 const shallowCopy = {
-	...originalObject,
-	address: { ...originalObject.address },
+  ...originalObject,
+  address: { ...originalObject.address },
 };
 
 // Modify the original object
@@ -739,7 +743,7 @@ const originalArray = [1, 2, [3, 4]];
 
 // Custom deep copy function (recursive)
 function deepCopy(arr) {
-	return arr.map((item) => (Array.isArray(item) ? deepCopy(item) : item));
+  return arr.map((item) => (Array.isArray(item) ? deepCopy(item) : item));
 }
 
 const deepCopiedArray = deepCopy(originalArray);
@@ -812,7 +816,7 @@ const fruits2 = fruits.slice(1, 3); // ["lemon", "kiwi"]
 
 // Iterating an array (looping through an array)
 fruits.forEach((fruit) => {
-	console.log(fruit);
+  console.log(fruit);
 });
 
 // Concatenating arrays (combining arrays)
@@ -866,9 +870,9 @@ const doubledNumbers = numbers.map((number) => <li>{number * 2}</li>);
 
 ```js
 const people = [
-	{ name: "Alice", age: 30 },
-	{ name: "Bob", age: 25 },
-	{ name: "Carol", age: 35 },
+  { name: "Alice", age: 30 },
+  { name: "Bob", age: 25 },
+  { name: "Carol", age: 35 },
 ];
 const adults = people.filter((person) => person.age >= 30);
 // adults: [{ name: "Alice", age: 30 }, { name: "Carol", age: 35 }]
@@ -879,9 +883,9 @@ Filter React Example:
 ```jsx
 // When user filter with age >= 30, only Alice and Carol will be shown
 const people = [
-	{ name: "Alice", age: 30 },
-	{ name: "Bob", age: 25 },
-	{ name: "Carol", age: 35 },
+  { name: "Alice", age: 30 },
+  { name: "Bob", age: 25 },
+  { name: "Carol", age: 35 },
 ];
 const adults = people.filter((person) => person.age >= 30);
 const adultNames = adults.map((person) => <li>{person.name}</li>);
@@ -899,9 +903,9 @@ const hasBanana = fruits.includes("banana");
 
 ```js
 const people = [
-	{ name: "Alice", age: 30 },
-	{ name: "Bob", age: 25 },
-	{ name: "Carol", age: 35 },
+  { name: "Alice", age: 30 },
+  { name: "Bob", age: 25 },
+  { name: "Carol", age: 35 },
 ];
 const carol = people.find((person) => person.name === "Carol");
 // carol: { name: "Carol", age: 35 }
@@ -911,26 +915,26 @@ React example using find / includes, filter and map:
 
 ```jsx
 const people = [
-	{ name: "Alice", age: 30 },
-	{ name: "Bob", age: 25 },
-	{ name: "Carol", age: 35 },
+  { name: "Alice", age: 30 },
+  { name: "Bob", age: 25 },
+  { name: "Carol", age: 35 },
 ];
 
 // Find the person with word "rol" in their name
 const carol = people.find((person) =>
-	person.name.toLowerCase().includes("rol")
+  person.name.toLowerCase().includes("rol")
 );
 console.log(carol); // { name: "Carol", age: 35 }
 
 // Or filter the people with word "rol" in their name
 const filteredPeople = people.filter((person) =>
-	person.name.toLowerCase().includes("rol")
+  person.name.toLowerCase().includes("rol")
 );
 console.log(filteredPeople); // [{ name: "Carol", age: 35 }]
 
 // Then map the filtered people to a list of <li> elements
 const filteredPeopleList = filteredPeople.map((person) => (
-	<li>{person.name}</li>
+  <li>{person.name}</li>
 ));
 ```
 
@@ -939,21 +943,21 @@ const filteredPeopleList = filteredPeople.map((person) => (
 ```js
 const numbers = [1, 2, 3, 4, 5];
 const sum = numbers.reduce(
-	(accumulator, currentValue) => accumulator + currentValue,
-	0
+  (accumulator, currentValue) => accumulator + currentValue,
+  0
 );
 // sum: 15
 
 const expenses = [
-	{ id: 1, description: "Groceries", amount: 50 },
-	{ id: 2, description: "Utilities", amount: 100 },
-	{ id: 3, description: "Rent", amount: 1200 },
-	{ id: 4, description: "Transportation", amount: 80 },
+  { id: 1, description: "Groceries", amount: 50 },
+  { id: 2, description: "Utilities", amount: 100 },
+  { id: 3, description: "Rent", amount: 1200 },
+  { id: 4, description: "Transportation", amount: 80 },
 ];
 
 // Calculate the total expense using reduce
 const totalExpense = expenses.reduce((accumulator, expense) => {
-	return accumulator + expense.amount;
+  return accumulator + expense.amount;
 }, 0);
 ```
 
@@ -1001,19 +1005,19 @@ console.log(fruits); // Output: ["Apple", "Banana", "Mango", "Orange"]
 // Sorting an array of objects (sort by name)
 
 const people = [
-	{ name: "Carol", age: 27 },
-	{ name: "Alice", age: 25 },
-	{ name: "Bob", age: 30 },
+  { name: "Carol", age: 27 },
+  { name: "Alice", age: 25 },
+  { name: "Bob", age: 30 },
 ];
 
 people.sort((a, b) => {
-	if (a.name < b.name) {
-		return -1;
-	}
-	if (a.name > b.name) {
-		return 1;
-	}
-	return 0;
+  if (a.name < b.name) {
+    return -1;
+  }
+  if (a.name > b.name) {
+    return 1;
+  }
+  return 0;
 });
 
 console.log(people);
@@ -1073,11 +1077,11 @@ console.log(copiedArray);
 
 // Rest operator example: Destructuring individual arguments into an array
 function sum(...numbers) {
-	let total = 0;
-	for (const number of numbers) {
-		total += number;
-	}
-	return total;
+  let total = 0;
+  for (const number of numbers) {
+    total += number;
+  }
+  return total;
 }
 
 // Pass in any number of arguments
@@ -1092,9 +1096,9 @@ console.log(sum(1, 2, 3, 4));
 ```js
 // Destructuring objects
 const person = {
-	name: "John Doe",
-	age: 20,
-	city: "Boston",
+  name: "John Doe",
+  age: 20,
+  city: "Boston",
 };
 
 // Without destructuring
@@ -1134,12 +1138,12 @@ console.log(rest); // [3, 4, 5]
 
 // Destructuring nested objects
 const personWithAddress = {
-	name: "John Doe",
-	age: 20,
-	address: {
-		city: "Boston",
-		state: "MA",
-	},
+  name: "John Doe",
+  age: 20,
+  address: {
+    city: "Boston",
+    state: "MA",
+  },
 };
 
 // Without destructuring
@@ -1148,52 +1152,52 @@ const state = person.address.state;
 
 // With destructuring
 const {
-	name: personName, // rename the variable (name -> personName) (John Doe)
-	age: personAge,
-	address: { city: personCity, state: personState }, // nested object (Boston, MA)
+  name: personName, // rename the variable (name -> personName) (John Doe)
+  age: personAge,
+  address: { city: personCity, state: personState }, // nested object (Boston, MA)
 } = personWithAddress;
 
 // Advanced Nested Destructuring
 const company = {
-	name: "TechCo",
-	location: {
-		city: "San Francisco",
-		state: "CA",
-	},
-	employees: [
-		{
-			firstName: "John",
-			lastName: "Doe",
-		},
-		{
-			firstName: "Alice",
-			lastName: "Smith",
-		},
-		{
-			firstName: "Bob",
-			lastName: "Brown",
-		},
-		{
-			firstName: "Eve",
-			lastName: "Jones",
-		},
-		{
-			firstName: "Charlie",
-			lastName: "Davis",
-		},
-	],
+  name: "TechCo",
+  location: {
+    city: "San Francisco",
+    state: "CA",
+  },
+  employees: [
+    {
+      firstName: "John",
+      lastName: "Doe",
+    },
+    {
+      firstName: "Alice",
+      lastName: "Smith",
+    },
+    {
+      firstName: "Bob",
+      lastName: "Brown",
+    },
+    {
+      firstName: "Eve",
+      lastName: "Jones",
+    },
+    {
+      firstName: "Charlie",
+      lastName: "Davis",
+    },
+  ],
 };
 
 // Destructuring with advanced nested structure
 const {
-	name: companyName,
-	location: { city: companyCity, state: companyState },
-	employees: [
-		{ firstName: firstEmployeeFirstName, lastName: firstEmployeeLastName },
-		,
-		thirdEmployee,
-		...restEmployees // rest operator
-	],
+  name: companyName,
+  location: { city: companyCity, state: companyState },
+  employees: [
+    { firstName: firstEmployeeFirstName, lastName: firstEmployeeLastName },
+    ,
+    thirdEmployee,
+    ...restEmployees // rest operator
+  ],
 } = company;
 
 console.log(companyName); // TechCo
@@ -1255,10 +1259,10 @@ param => {
 
 ```js
 const adventurer = {
-	name: "Alice",
-	cat: {
-		name: "Dinah",
-	},
+  name: "Alice",
+  cat: {
+    name: "Dinah",
+  },
 };
 
 // Check if adventurer.dog exists, if it does, return adventurer.dog.name
@@ -1304,9 +1308,9 @@ console.log(a.speed);
 // Expected output: 25
 
 const user = {
-	name: "Alice",
-	age: null,
-	city: undefined,
+  name: "Alice",
+  age: null,
+  city: undefined,
 };
 
 user.name ??= "Bob"; // Alice (already defined)
@@ -1331,8 +1335,8 @@ const result = 0 && "This won't be displayed";
 console.log(result); // Output: 0
 
 const user = {
-	name: "John Doe",
-	age: 20,
+  name: "John Doe",
+  age: 20,
 };
 ```
 
@@ -1343,10 +1347,10 @@ const isClockVisible = true;
 
 // The clock will be rendered if isClockVisible is true
 return (
-	<div>
-		{isClockVisible && <Clock />}
-		{/* If isClockVisible is false, Clock component will not be rendered */}
-	</div>
+  <div>
+    {isClockVisible && <Clock />}
+    {/* If isClockVisible is false, Clock component will not be rendered */}
+  </div>
 );
 ```
 
@@ -1380,7 +1384,7 @@ console.log(Nickname); // Output: John Doe
 // myModule.js
 export const pi = 3.14159;
 export function greet(name) {
-	return `Hello, ${name}!`;
+  return `Hello, ${name}!`;
 }
 
 // Importing named exports
@@ -1396,7 +1400,7 @@ console.log(hello("John Doe")); // Hello, John Doe!
 // myModule.js
 // myModule.js
 export default function add(a, b) {
-	return a + b;
+  return a + b;
 }
 
 // Importing default exports
@@ -1428,24 +1432,24 @@ import addFunc from "./myModule.js";
 ```js
 // Creating a promise
 const myPromise = new Promise((resolve, reject) => {
-	// Perform an asynchronous operation
-	setTimeout(() => {
-		// If successful, call resolve with the result
-		resolve("Operation completed successfully");
+  // Perform an asynchronous operation
+  setTimeout(() => {
+    // If successful, call resolve with the result
+    resolve("Operation completed successfully");
 
-		// If there's an error, call reject with an error message
-		// reject("Operation failed");
-	}, 2000);
+    // If there's an error, call reject with an error message
+    // reject("Operation failed");
+  }, 2000);
 });
 
 // Consuming a promise
 myPromise
-	.then((result) => {
-		console.log(result);
-	})
-	.catch((error) => {
-		console.error(error);
-	});
+  .then((result) => {
+    console.log(result);
+  })
+  .catch((error) => {
+    console.error(error);
+  });
 ```
 
 - [**Promise.all**](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/all): The Promise.all() method takes an array of promises and returns a single Promise that resolves to an array of the results. It resolves when all the promises in the array resolve, or **rejects if _any_ of the promises reject**
@@ -1455,40 +1459,40 @@ myPromise
 ```js
 // Promise.all: Wait for all promises to resolve or reject
 const promise1 = new Promise((resolve, reject) => {
-	setTimeout(resolve, 500, "one");
+  setTimeout(resolve, 500, "one");
 });
 
 const promise2 = new Promise((resolve, reject) => {
-	setTimeout(resolve, 100, "two");
+  setTimeout(resolve, 100, "two");
 });
 
 const promise3 = new Promise((resolve, reject) => {
-	setTimeout(reject, 1000, "three");
+  setTimeout(reject, 1000, "three");
 });
 
 Promise.all([promise1, promise2]).then((values) => {
-	console.log(values); // ["one", "two"]
+  console.log(values); // ["one", "two"]
 });
 
 const promises = [promise1, promise2, promise3];
 
 // Promise all immediately rejects if any of the promises reject
 Promise.all(promises)
-	.then((values) => {
-		console.log(values); // This is not called
-	})
-	.catch((error) => {
-		console.log(error); // "three"
-	});
+  .then((values) => {
+    console.log(values); // This is not called
+  })
+  .catch((error) => {
+    console.log(error); // "three"
+  });
 
 // Promise.allSettled: Wait for all promises to settle (resolve or reject)
 Promise.allSettled([promise1, promise2, promise3]).then((results) => {
-	console.log(results);
-	// [
-	//   { status: "fulfilled", value: "one" },
-	//   { status: "fulfilled", value: "two" },
-	//   { status: "rejected", reason: "three" },
-	// ]
+  console.log(results);
+  // [
+  //   { status: "fulfilled", value: "one" },
+  //   { status: "fulfilled", value: "two" },
+  //   { status: "rejected", reason: "three" },
+  // ]
 });
 ```
 
@@ -1497,27 +1501,27 @@ Promise.allSettled([promise1, promise2, promise3]).then((results) => {
 ```js
 // async keyword: The async keyword is used to define an asynchronous function
 async function fetchData() {
-	// try-catch block: Used to handle errors
-	try {
-		// await keyword: Used to wait for the asynchronous
-		// operation to complete
-		const response = await fetch("https://api.example.com/data");
-		const data = await response.json();
-		return data;
-	} catch (error) {
-		// all errors will be caught here
-		throw new Error("Failed to fetch data");
-	}
+  // try-catch block: Used to handle errors
+  try {
+    // await keyword: Used to wait for the asynchronous
+    // operation to complete
+    const response = await fetch("https://api.example.com/data");
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    // all errors will be caught here
+    throw new Error("Failed to fetch data");
+  }
 }
 
 // Calling the async function
 fetchData()
-	.then((data) => {
-		console.log(data);
-	})
-	.catch((error) => {
-		console.error(error);
-	});
+  .then((data) => {
+    console.log(data);
+  })
+  .catch((error) => {
+    console.error(error);
+  });
 ```
 
 Real World Example:
@@ -1525,46 +1529,46 @@ Real World Example:
 ```js
 // Fetch user data from GitHub API
 async function fetchUserData(username) {
-	try {
-		const response = await fetch(`https://api.github.com/users/${username}`);
-		const userData = await response.json();
-		return userData;
-	} catch (error) {
-		throw new Error("Failed to fetch user data");
-	}
+  try {
+    const response = await fetch(`https://api.github.com/users/${username}`);
+    const userData = await response.json();
+    return userData;
+  } catch (error) {
+    throw new Error("Failed to fetch user data");
+  }
 }
 
 fetchUserData("jun-del")
-	.then((userData) => {
-		console.log(userData);
-	})
-	.catch((error) => {
-		console.error(error);
-	});
+  .then((userData) => {
+    console.log(userData);
+  })
+  .catch((error) => {
+    console.error(error);
+  });
 
 // Chain multiple async functions together
 async function performAsyncTasks() {
-	try {
-		// Wait for the first async function to complete before
-		// running the second one
-		const result1 = await someAsyncFunction();
-		const result2 = await anotherAsyncFunction(result1);
+  try {
+    // Wait for the first async function to complete before
+    // running the second one
+    const result1 = await someAsyncFunction();
+    const result2 = await anotherAsyncFunction(result1);
 
-		// Return the result of the second async function
-		return result2;
-	} catch (error) {
-		throw new Error("An error occurred during async tasks");
-	}
+    // Return the result of the second async function
+    return result2;
+  } catch (error) {
+    throw new Error("An error occurred during async tasks");
+  }
 }
 
 performAsyncTasks()
-	// Return the result of the second async function
-	.then((result) => {
-		console.log(result);
-	})
-	.catch((error) => {
-		console.error(error);
-	});
+  // Return the result of the second async function
+  .then((result) => {
+    console.log(result);
+  })
+  .catch((error) => {
+    console.error(error);
+  });
 ```
 
 ---
@@ -1586,8 +1590,8 @@ To understand the basics of how JavaScript works under the hood, I recommend wat
 const num = 3;
 
 function multiplyBy2(inputNumber) {
-	const result = inputNumber * 2;
-	return result;
+  const result = inputNumber * 2;
+  return result;
 }
 
 const output = multiplyBy2(num);

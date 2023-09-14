@@ -33,7 +33,7 @@ Demo with index.html
 
 5. `Ctrl + Shift + K` to delete line / `Ctrl + x` to cut line (faster alternative way of deleting)
 
-6. `Ctrl + Shift + up/down arrow key` to current line up or down
+6. `Ctrl + Shift + up/down arrow key` to highlight current line up or down
 
 7. `Ctrl + alt + up/down arrow key` to insert cursor above or below
 
@@ -53,9 +53,7 @@ Demo with index.html
 
 15. `Ctrl + Shift + t` = reopen closed tab
 
-16. `Alt + up/down arrow key` = move line up or down
-
-17. `Ctrl + l` = select whole line
+16. `Ctrl + l` = select whole line
 
 ### Recommended Extensions
 

@@ -16,7 +16,9 @@ tags: ["javascript", "react"]
 
 ---
 
-### [React and JavaScript](https://nextjs.org/learn/foundations/from-javascript-to-react)
+### [React and JavaScript by Next.js](https://nextjs.org/learn/foundations/from-javascript-to-react)
+
+### [Why React Rerenders](https://punits.dev/jargon-free-intros/why-react-rerenders-and-when-to-worry-about-it/)
 
 #### 1. Functions
 
@@ -111,28 +113,28 @@ The concept of the {children} slot is used for rendering dynamic content or comp
 
 ```jsx
 function ParentComponent({ children }) {
-	return (
-		<div>
-			<h1>This is the parent component</h1>
-			{children}
-		</div>
-	);
+  return (
+    <div>
+      <h1>This is the parent component</h1>
+      {children}
+    </div>
+  );
 }
 
 function App() {
-	return (
-		<ParentComponent>
-			<p>Child 1: This is some content</p>
-			<button>Child 2: Click me</button>
-		</ParentComponent>
-	);
+  return (
+    <ParentComponent>
+      <p>Child 1: This is some content</p>
+      <button>Child 2: Click me</button>
+    </ParentComponent>
+  );
 }
 
 // will be rendered as
 <div>
-	<h1>This is the parent component</h1>
-	<p>Child 1: This is some content</p>
-	<button>Child 2: Click me</button>
+  <h1>This is the parent component</h1>
+  <p>Child 1: This is some content</p>
+  <button>Child 2: Click me</button>
 </div>;
 ```
 
@@ -172,7 +174,7 @@ In functional components, you can destructure props directly in the function par
 
 ```jsx
 const UserProfile = ({ name, age }) => {
-	// Component implementation
+  // Component implementation
 };
 ```
 
@@ -182,18 +184,18 @@ If you prefer, you can also destructure props inside the function body:
 // Destructure the props object in the function parameter
 // props = { name: "John", age: 20 };
 const UserProfile = (props) => {
-	const { name, age } = props; // Destructure props object
+  const { name, age } = props; // Destructure props object
 
-	// Equivalent to
-	const name = props.name;
-	const age = props.age;
+  // Equivalent to
+  const name = props.name;
+  const age = props.age;
 
-	return (
-		<>
-			<div>Name: {name}</div>
-			<div>Age: {age}</div>
-		</>
-	);
+  return (
+    <>
+      <div>Name: {name}</div>
+      <div>Age: {age}</div>
+    </>
+  );
 };
 ```
 
@@ -250,7 +252,7 @@ const [count, setCount] = useState(0);
 // setCount = function (function to update count)
 
 const increment = () => {
-	setCount(count + 1); // count(0) + 1 (1)
+  setCount(count + 1); // count(0) + 1 (1)
 };
 ```
 
@@ -289,17 +291,17 @@ const [count, setCount] = useState(0);
 let double = count * 2;
 
 useEffect(() => {
-	console.log("I only run once after initial render");
+  console.log("I only run once after initial render");
 }, []); //  Run effect only once after initial render
 
 useEffect(() => {
-	// Update the document title using the browser API
-	document.title = `You clicked ${count} times`;
+  // Update the document title using the browser API
+  document.title = `You clicked ${count} times`;
 }, [count]); // Only re-run the effect if count changes
 
 useEffect(() => {
-	console.log(`My double count is ${double}`);
-	// 0, 2, 4, 6, 8, 10, 12, 14, 16, 18
+  console.log(`My double count is ${double}`);
+  // 0, 2, 4, 6, 8, 10, 12, 14, 16, 18
 }); // Run effect after every render
 ```
 
@@ -309,33 +311,33 @@ useEffect(() => {
 import { useEffect, useState } from "react";
 
 export default function UserProfile() {
-	const [user, setUser] = useState(null); // State to store user data
+  const [user, setUser] = useState(null); // State to store user data
 
-	useEffect(() => {
-		// Simulate a data fetch after component renders
-		const fetchData = async () => {
-			const response = await fetch(
-				"https://jsonplaceholder.typicode.com/users"
-			);
-			const data = await response.json();
-			setUser(data);
-		};
+  useEffect(() => {
+    // Simulate a data fetch after component renders
+    const fetchData = async () => {
+      const response = await fetch(
+        "https://jsonplaceholder.typicode.com/users"
+      );
+      const data = await response.json();
+      setUser(data);
+    };
 
-		fetchData();
-	}, []); // Empty dependency array means this effect runs once
+    fetchData();
+  }, []); // Empty dependency array means this effect runs once
 
-	return (
-		<div>
-			{user ? (
-				<div>
-					<p>Name: {user[0].name}</p>
-					<p>Email: {user[0].email}</p>
-				</div>
-			) : (
-				<p>Loading...</p>
-			)}
-		</div>
-	);
+  return (
+    <div>
+      {user ? (
+        <div>
+          <p>Name: {user[0].name}</p>
+          <p>Email: {user[0].email}</p>
+        </div>
+      ) : (
+        <p>Loading...</p>
+      )}
+    </div>
+  );
 }
 ```
 
@@ -345,14 +347,14 @@ For the example below, if your component renders multiple times (as they typical
 
 ```jsx
 useEffect(() => {
-	const timer = setTimeout(() => {
-		console.log("This will run after 3 seconds");
-	}, 3000);
+  const timer = setTimeout(() => {
+    console.log("This will run after 3 seconds");
+  }, 3000);
 
-	// Clean up function
-	return () => {
-		clearTimeout(timer);
-	};
+  // Clean up function
+  return () => {
+    clearTimeout(timer);
+  };
 }, []);
 ```
 
@@ -372,29 +374,29 @@ const UserContext = createContext();
 
 // Step 2: Create a custom provider component
 function UserProvider({ children }) {
-	// Define the state or data you want to share via the context
-	const [user, setUser] = useState(null);
+  // Define the state or data you want to share via the context
+  const [user, setUser] = useState(null);
 
-	// You can include any functions or logic related to the context data here
-	const login = (userData) => {
-		setUser(userData);
-	};
+  // You can include any functions or logic related to the context data here
+  const login = (userData) => {
+    setUser(userData);
+  };
 
-	const logout = () => {
-		setUser(null);
-	};
+  const logout = () => {
+    setUser(null);
+  };
 
-	// Provide / Group the context data and functions to the children components
-	const contextValue = {
-		user,
-		login,
-		logout,
-	};
+  // Provide / Group the context data and functions to the children components
+  const contextValue = {
+    user,
+    login,
+    logout,
+  };
 
-	// Step 3: Return the context provider component and pass in the context value
-	return (
-		<UserContext.Provider value={contextValue}>{children}</UserContext.Provider>
-	);
+  // Step 3: Return the context provider component and pass in the context value
+  return (
+    <UserContext.Provider value={contextValue}>{children}</UserContext.Provider>
+  );
 }
 
 export { UserProvider, UserContext };
@@ -437,30 +439,30 @@ import React, { useContext } from "react";
 import { UserContext } from "./UserContext";
 
 function UserProfile() {
-	// Step 5: Access the context data using useContext
-	const { user, login, logout } = useContext(UserContext);
-	// It will be the value prop of UserContext.Provider
+  // Step 5: Access the context data using useContext
+  const { user, login, logout } = useContext(UserContext);
+  // It will be the value prop of UserContext.Provider
 
-	return (
-		<div>
-			{user ? (
-				<div>
-					<h2>Welcome, {user.name}!</h2>
-					<p>Email: {user.email}</p>
-					<button onClick={logout}>Logout</button>
-				</div>
-			) : (
-				<div>
-					<h2>Please log in</h2>
-					<button
-						onClick={() => login({ name: "John", email: "john@example.com" })}
-					>
-						Login
-					</button>
-				</div>
-			)}
-		</div>
-	);
+  return (
+    <div>
+      {user ? (
+        <div>
+          <h2>Welcome, {user.name}!</h2>
+          <p>Email: {user.email}</p>
+          <button onClick={logout}>Logout</button>
+        </div>
+      ) : (
+        <div>
+          <h2>Please log in</h2>
+          <button
+            onClick={() => login({ name: "John", email: "john@example.com" })}
+          >
+            Login
+          </button>
+        </div>
+      )}
+    </div>
+  );
 }
 
 export default UserProfile;
@@ -481,29 +483,29 @@ import { useReducer } from "react";
 // Define a reducer function
 // state = current state, action = object that describes what happened
 function counterReducer(state, action) {
-	switch (action.type) {
-		case "INCREMENT":
-			return { count: state.count + 1 };
-		case "DECREMENT":
-			return { count: state.count - 1 };
-		default:
-			return state;
-	}
+  switch (action.type) {
+    case "INCREMENT":
+      return { count: state.count + 1 };
+    case "DECREMENT":
+      return { count: state.count - 1 };
+    default:
+      return state;
+  }
 }
 
 function Counter() {
-	// Initialize state using useReducer, (reducer, initialState) as arguments
-	const [state, dispatch] = useReducer(counterReducer, { count: 0 });
-	// State is an object with a count property (state.count)
-	// dispatch is a function to update the state
+  // Initialize state using useReducer, (reducer, initialState) as arguments
+  const [state, dispatch] = useReducer(counterReducer, { count: 0 });
+  // State is an object with a count property (state.count)
+  // dispatch is a function to update the state
 
-	return (
-		<div>
-			<p>Count: {state.count}</p>
-			<button onClick={() => dispatch({ type: "INCREMENT" })}>Increment</button>
-			<button onClick={() => dispatch({ type: "DECREMENT" })}>Decrement</button>
-		</div>
-	);
+  return (
+    <div>
+      <p>Count: {state.count}</p>
+      <button onClick={() => dispatch({ type: "INCREMENT" })}>Increment</button>
+      <button onClick={() => dispatch({ type: "DECREMENT" })}>Decrement</button>
+    </div>
+  );
 }
 ```
 
@@ -520,31 +522,31 @@ import { useRef } from "react";
 
 // Referring to DOM elements (similar to document.getElementById())
 function TextInputWithFocusButton() {
-	const inputEl = useRef(null); // Initialize a ref with null
-	const onButtonClick = () => {
-		// `current` points to the mounted text input element
-		inputEl.current.focus(); // Focus the input element
-	};
+  const inputEl = useRef(null); // Initialize a ref with null
+  const onButtonClick = () => {
+    // `current` points to the mounted text input element
+    inputEl.current.focus(); // Focus the input element
+  };
 
-	return (
-		<>
-			{/* Assign / "Hook" the ref to the input element */}
-			<input ref={inputEl} type="text" />
-			<button onClick={onButtonClick}>Focus the input</button>
-		</>
-	);
+  return (
+    <>
+      {/* Assign / "Hook" the ref to the input element */}
+      <input ref={inputEl} type="text" />
+      <button onClick={onButtonClick}>Focus the input</button>
+    </>
+  );
 }
 
 // Referring to values that’s not needed for rendering
 export default function Counter() {
-	let ref = useRef(0); // Initialize a ref with 0
+  let ref = useRef(0); // Initialize a ref with 0
 
-	function handleClick() {
-		ref.current = ref.current + 1; // Update the ref value
-		alert("You clicked " + ref.current + " times!");
-	}
+  function handleClick() {
+    ref.current = ref.current + 1; // Update the ref value
+    alert("You clicked " + ref.current + " times!");
+  }
 
-	return <button onClick={handleClick}>Click me!</button>;
+  return <button onClick={handleClick}>Click me!</button>;
 }
 ```
 
@@ -579,18 +581,18 @@ const number = [];
 
 // Problem: in JSX, 0 is not falsey, therefore it will render 0
 return (
-	<>
-		{/* Problem: Renders 0 even though it is falsy */}
-		{number.length && <h1>Number of items: {number.length}</h1>}
-	</>
+  <>
+    {/* Problem: Renders 0 even though it is falsy */}
+    {number.length && <h1>Number of items: {number.length}</h1>}
+  </>
 );
 
 // Solution: explicitly check for length > 0 or !== 0
 return (
-	<>
-		{/* !== 0 or > 0 */}
-		{number.length > 0 && <h1>Number of items: {number.length}</h1>}
-	</>
+  <>
+    {/* !== 0 or > 0 */}
+    {number.length > 0 && <h1>Number of items: {number.length}</h1>}
+  </>
 );
 ```
 
@@ -606,22 +608,22 @@ return (
 const [count, setCount] = useState(0);
 
 const increment = () => {
-	// Avoid this (may lead to unexpected behavior)
-	setCount(count + 1); // count(0) + 1 (1)
-	setCount(count + 1); // count(0) + 1 (1) again, not 2
+  // Avoid this (may lead to unexpected behavior)
+  setCount(count + 1); // count(0) + 1 (1)
+  setCount(count + 1); // count(0) + 1 (1) again, not 2
 };
 
 // Solution: Correct way using functional update
 const increment = () => {
-	setCount((prevCount) => prevCount + 1); // count(0) + 1 (1)
-	setCount((prevCount) => prevCount + 1); // count(1) + 1 (2)
+  setCount((prevCount) => prevCount + 1); // count(0) + 1 (1)
+  setCount((prevCount) => prevCount + 1); // count(1) + 1 (2)
 };
 
 return (
-	<>
-		<button onClick={increment}>Add counter</button>
-		<div>counter: {count}</div>
-	</>
+  <>
+    <button onClick={increment}>Add counter</button>
+    <div>counter: {count}</div>
+  </>
 );
 ```
 
