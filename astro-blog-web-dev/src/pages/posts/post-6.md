@@ -20,7 +20,7 @@ tags: ["javascript", "react"]
 
 #### 1. Functions
 
-- React components are essentially JavaScript functions. They take in _props_ as arguments and return elements or components (HTML in JSX format). You can think of React components as special functions that encapsulate a part of your user interface.
+- React are made with the concept of reusable components which are essentially JavaScript functions. They take in _props_ (like parameter) as arguments and return elements or components (HTML in JSX format). You can think of React components as special functions that encapsulate a part of your user interface.
 
 - Props (Properties): Props are a way to pass data from a parent component to a child component. They are read-only and help you create reusable components.
 
@@ -31,6 +31,11 @@ tags: ["javascript", "react"]
 - **React components must start with a capital letter:**
 
   - React treats components starting with lowercase letters as DOM tags. For example, `<div />` represents an HTML div tag, but `<Welcome />` represents a component and requires Welcome to be in scope.
+
+- Wrap your code in curly braces `{}` to embed JavaScript expressions in JSX:
+
+  - `const name = "John";`
+  - `<h1>Hello, {name}</h1>`
 
 - To maintain a clean codebase, it's recommended to export and import your components consistently. You can export a function component as a named export or a default export. Similarly, you can import them using named imports or default imports.
 
