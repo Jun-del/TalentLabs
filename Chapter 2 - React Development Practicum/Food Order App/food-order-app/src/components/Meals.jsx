@@ -1,13 +1,31 @@
+import { useItemscontext } from "../store/items-context";
 import MealsItem from "./MealsItem";
 import Grid from "@mui/material/Grid";
 
 const Meals = () => {
-  // TODO: Grid out the food 3 items per row
+  const { itemsData } = useItemscontext();
+
   return (
-    <Grid container spacing={2}>
-      <Grid item xs={12}>
-        <MealsItem />
-      </Grid>
+    <Grid
+      container
+      spacing={2}
+      padding={4}
+      justifyContent={{
+        xs: "center",
+        md: "flex-start",
+      }}
+    >
+      {itemsData.map((menuItem) => (
+        <Grid item key={menuItem.id} xs={12} md={6} lg={4}>
+          <MealsItem
+            id={menuItem.id}
+            name={menuItem.name}
+            description={menuItem.description}
+            price={menuItem.price}
+            image={menuItem.image}
+          />
+        </Grid>
+      ))}
     </Grid>
   );
 };

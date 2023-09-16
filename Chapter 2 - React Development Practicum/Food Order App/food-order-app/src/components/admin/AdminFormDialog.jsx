@@ -1,5 +1,5 @@
-import PropTypes from "prop-types";
 import { useState } from "react";
+import PropTypes from "prop-types";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import Dialog from "@mui/material/Dialog";
@@ -7,7 +7,9 @@ import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogTitle from "@mui/material/DialogTitle";
 import InputAdornment from "@mui/material/InputAdornment";
+import Typography from "@mui/material/Typography";
 import InputFileUpload from "../custom-components/UploadButton";
+import Box from "@mui/material/Box";
 import { useItemscontext } from "../../store/items-context";
 import { MAX_FILE_SIZE, BASE_URL } from "../../constant";
 
@@ -49,6 +51,7 @@ const AdminFormDialog = ({ open, handleClose }) => {
     e.target.value = null;
   }
 
+  // TODO: error and loading
   // * Store the image online at https://api.imgbb.com/
   async function uploadImage() {
     const formData = new FormData();
@@ -86,35 +89,21 @@ const AdminFormDialog = ({ open, handleClose }) => {
   }
 
   function handleAddItemToMenu() {
-    // TODO: Handle the price
-    // let value = parseFloat(e.target.value.toString(), 2);
+    const parsedPrice = parseFloat(foodPrice).toFixed(2);
 
-    //   if (isNaN(value)) {
-    //     value = 0;
-    //   }
+    if (isNaN(parsedPrice)) {
+      // TODO: HANDLE ALL ERRORS IN THIS INPUT FORM
+      alert("Only numbers are allowed");
+      return;
+    }
 
-    //   if (value > MAX_PRICE) value = MAX_PRICE;
-    //   if (value < MIN_PRICE) value = MIN_PRICE;
-
-    //   setFoodPrice(value);
-
-    // TODO: update the items in context
-    /**
-     *  Mock for itemsData = [
-     * {
-     *  id: string,
-     *  foodName: string,
-     *  foodDescription: string,
-     *  foodPrice: RM
-     * }
-     * ]
-     * */
+    // TODO: Handle max price?
 
     const newItem = {
       id: crypto.randomUUID(),
       name: foodName,
       description: foodDescription,
-      price: foodPrice,
+      price: parsedPrice,
       image: "",
     };
 
@@ -122,6 +111,7 @@ const AdminFormDialog = ({ open, handleClose }) => {
       if (imageData) {
         newItem.image = imageData;
 
+        // TODO: update the items in context
         addNewItem(newItem);
 
         setFoodName("");
@@ -133,6 +123,7 @@ const AdminFormDialog = ({ open, handleClose }) => {
       } else {
         // Handle the case where image upload failed
         console.error("Image upload failed.");
+        return;
       }
     });
   }
@@ -141,6 +132,8 @@ const AdminFormDialog = ({ open, handleClose }) => {
     <Dialog open={open} onClose={handleClose}>
       <DialogTitle>Add Food Item</DialogTitle>
       <DialogContent>
+        {/* TODO: Box? */}
+        {/* <Box sx={{ display: "flex", flexDirection: "column" }}> */}
         <TextField
           autoFocus
           margin="dense"
@@ -192,13 +185,26 @@ const AdminFormDialog = ({ open, handleClose }) => {
           required
         />
         <InputFileUpload handleFileChange={handleFileChange} />
+        {/* </Box> */}
+
+        {/* TODO: make this section better */}
         {foodImage.preview !== "" && (
-          <img src={foodImage.preview} alt="uploaded" />
+          <div>
+            <Typography>Image preview:</Typography>
+            <img
+              src={foodImage.preview}
+              alt="uploaded"
+              width="300px"
+              height="auto"
+            />
+          </div>
         )}
       </DialogContent>
       <DialogActions>
         <Button onClick={handleClose}>Cancel</Button>
-        <Button onClick={handleAddItemToMenu}>Add</Button>
+        <Button variant="contained" onClick={handleAddItemToMenu}>
+          Add
+        </Button>
       </DialogActions>
     </Dialog>
   );

@@ -1,13 +1,17 @@
 import PropTypes from "prop-types";
 import itemsContext from "./items-context";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { MENU_ITEMS_LOCAL_STORAGE_KEY } from "../constant";
 
 export default function ItemsProvider({ children }) {
   // ! Default: true = User page, false = Admin page
   // ! items-provider: to store the food, cart-provider: to store only items in the cart
   const [switchPage, setSwitchPage] = useState(true);
 
-  const [menuItemsData, setMenuItemsData] = useState([]);
+  // TODO: use zod to validate local storage data
+  const initialMenuItems =
+    JSON.parse(localStorage.getItem(MENU_ITEMS_LOCAL_STORAGE_KEY)) || [];
+
   /**
    *  Mock for menuItemsData = [
    * {
@@ -19,15 +23,28 @@ export default function ItemsProvider({ children }) {
    * }
    * ]
    * */
+  const [menuItemsData, setMenuItemsData] = useState(initialMenuItems);
 
   function addNewItem(newItem) {
     setMenuItemsData((prevData) => [...prevData, newItem]);
   }
 
+  useEffect(() => {
+    localStorage.setItem(
+      MENU_ITEMS_LOCAL_STORAGE_KEY,
+      JSON.stringify(menuItemsData)
+    );
+  }, [menuItemsData]);
+
   function removeItem(id) {
-    console.log(id);
+    const newMenuItems = menuItemsData.filter(
+      (menuItems) => menuItems.id !== id
+    );
+
+    setMenuItemsData(newMenuItems);
   }
 
+  // TODO: update item
   function updateItem(id) {
     console.log(id);
   }
@@ -51,5 +68,5 @@ export default function ItemsProvider({ children }) {
 }
 
 ItemsProvider.propTypes = {
-  children: PropTypes.func,
-}.isRequired;
+  children: PropTypes.node.isRequired,
+};

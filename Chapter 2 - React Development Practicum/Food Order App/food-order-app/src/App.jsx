@@ -15,7 +15,7 @@ function App() {
     <ThemeProvider theme={theme}>
       <CssBaseline />
 
-      {!itemsContext.switchPage ? <Users /> : <Admin />}
+      {itemsContext.switchPage ? <Users /> : <Admin />}
       <Footer />
     </ThemeProvider>
   );

@@ -1,50 +1,75 @@
+import PropTypes from "prop-types";
 import Card from "@mui/material/Card";
 import CardMedia from "@mui/material/CardMedia";
 import CardContent from "@mui/material/CardContent";
 import CardActions from "@mui/material/CardActions";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
+import Box from "@mui/material/Box";
 import { useItemscontext } from "../store/items-context";
 import { useCartContext } from "../store/cart-context";
 
-const MealsItem = () => {
-  // TODO: Receive props and map them, use the id to delete item
-
+const MealsItem = ({ id, name, description, price, image }) => {
   // @ Default: true = User page, false = Admin page
   // TODO: switch page to know if its admin or user panel
-  const { switchPage, removeItem } = useItemscontext();
+  const { switchPage, removeItem: removeMenuItem } = useItemscontext();
 
-  // TODO: add to cart thingy
   const { addItem } = useCartContext();
+
+  function addItemToCart() {
+    const cartItemToAdd = {
+      id,
+      name,
+      price,
+      quantity: 1,
+    };
+
+    addItem(cartItemToAdd);
+  }
+
+  function removeItemFromMenu(id) {
+    removeMenuItem(id);
+
+    // TODO: notifies cart since the provider is different and the cart provider is not in the same tree
+  }
 
   return (
     <Card sx={{ maxWidth: 345, borderRadius: 3 }}>
-      <CardMedia
-        sx={{ height: 250 }}
-        image={`https://images.unsplash.com/photo-1586190848861-99aa4a171e90?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1160&q=80`}
-        title={"food name"}
-      />
-      <CardContent>
-        <Typography gutterBottom variant="h5" component="div">
-          {`Food name`}
-        </Typography>
+      <CardMedia sx={{ height: 250 }} image={image.display_url} title={name} />
+      <CardContent sx={{ display: "flex", flexDirection: "column" }}>
+        <Box sx={{ display: "flex", justifyContent: "space-between" }}>
+          <Typography gutterBottom variant="h5" component="div">
+            {name}
+          </Typography>
+          <Typography variant="h6">RM {price}</Typography>
+        </Box>
         <Typography variant="body2" color="text.secondary">
-          {`Food description`}
+          {description}
         </Typography>
       </CardContent>
       <CardActions>
         {switchPage ? (
-          <Button variant="outlined" onClick={() => addItem()}>
+          // * If user, add to cart
+          <Button variant="outlined" onClick={addItemToCart}>
             Add to Cart
           </Button>
         ) : (
-          <Button variant="outlined" onClick={() => removeItem()}>
+          // * If admin, allow deletion of catalog items
+          <Button variant="outlined" onClick={() => removeItemFromMenu(id)}>
             Delete
           </Button>
         )}
       </CardActions>
     </Card>
   );
+};
+
+MealsItem.propTypes = {
+  id: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  description: PropTypes.string.isRequired,
+  price: PropTypes.string.isRequired,
+  image: PropTypes.object.isRequired,
 };
 
 export default MealsItem;
