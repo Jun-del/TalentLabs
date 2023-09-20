@@ -1,5 +1,7 @@
 # React + Vite
 
+## Delete all the mock data and upload your menu items, editing the mock data in admin panel will cause error due to missing fields (may add complete data in the future or remove mock data all together)
+
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
 Currently, two official plugins are available:

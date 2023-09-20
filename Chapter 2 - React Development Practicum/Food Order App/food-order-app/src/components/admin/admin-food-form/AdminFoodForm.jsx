@@ -174,7 +174,9 @@ const AdminFoodForm = ({ open, setOpenItemForm, isEdit, editItemId }) => {
 
     try {
       // wait for the image to be uploaded to the server
-      const uploadedImage = await uploadImage(values.image.raw);
+      const uploadedImage = values.image.raw.lastModifiedDate
+        ? await uploadImage(values.image.raw)
+        : values.image.raw;
 
       if (uploadedImage) {
         const newItem = {

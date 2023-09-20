@@ -20,7 +20,6 @@ const MealsItem = ({
 }) => {
   // @ Default: true = User page, false = Admin page
   const { switchPage } = useItemscontext();
-
   const { addItem } = useCartContext();
 
   function addItemToCart() {
@@ -45,7 +44,7 @@ const MealsItem = ({
       >
         <CardMedia
           sx={{ height: 250 }}
-          image={image?.display_url}
+          image={image.display_url || image.raw.display_url || image.preview}
           title={name}
         />
         <CardContent sx={{ display: "flex", flexDirection: "column" }}>

@@ -40,9 +40,9 @@ export default function ItemsProvider({ children }) {
     const updatedMenuItems = menuItemsData.map((menuItem) => {
       if (menuItem.id === id) {
         return updatedItem;
+      } else {
+        return menuItem;
       }
-
-      return menuItem;
     });
 
     setMenuItemsData(updatedMenuItems);
