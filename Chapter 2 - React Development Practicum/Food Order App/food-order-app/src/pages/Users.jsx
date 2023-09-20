@@ -1,16 +1,31 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
+import Box from "@mui/material/Box";
+import Grid from "@mui/material/Grid";
+import Typography from "@mui/material/Typography";
+import AboutUs from "../components/users/about-us/AboutUs";
+import CartAppBar from "../components/users/cart-appbar/CartAppBar";
+import Cart from "../components/users/cart/Cart";
+import Banner from "../components/users/banner/Banner";
+import Meals from "../components/meals/Meals";
+import SuccessAlert from "../components/custom-components/SuccessAlert";
 import CartProvider from "../store/CartProvider";
-import Cart from "../components/users/Cart";
-import Banner from "../components/users/Banner";
-import AboutUs from "../components/users/AboutUs";
-import Meals from "../components/Meals";
-import CartAppBar from "../components/users/CartAppBar";
-import { useItemscontext } from "../store/items-context";
 
 const Users = () => {
-  const { itemsData } = useItemscontext();
-
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [openSnackbar, setOpenSnackbar] = useState(false);
+
+  const sectionRef = useRef(null);
+  const menuItemsRef = useRef(null);
+
+  function scrollToSection() {
+    if (!sectionRef.current) return;
+    sectionRef.current.scrollIntoView({ behavior: "smooth" });
+  }
+
+  function scrollToMenuItems() {
+    if (!menuItemsRef.current) return;
+    menuItemsRef.current.scrollIntoView({ behavior: "smooth" });
+  }
 
   function handleCartOpen() {
     setIsModalOpen(true);
@@ -24,21 +39,70 @@ const Users = () => {
     setIsModalOpen(false);
   }
 
+  function handleSnackbarOpen() {
+    setOpenSnackbar(true);
+  }
+
   return (
     <CartProvider>
-      <CartAppBar handleClick={handleCartOpen} />
+      <Box>
+        <CartAppBar handleClick={handleCartOpen} />
 
-      <Cart open={isModalOpen} handleClose={handleCartClose} />
+        <Cart
+          open={isModalOpen}
+          handleClose={handleCartClose}
+          handleSnackbarOpen={handleSnackbarOpen}
+        />
 
-      <Banner />
-      <h1>User Page</h1>
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+          }}
+        >
+          <Banner handleClick={scrollToSection} />
 
-      <section>
-        <AboutUs />
+          <section ref={sectionRef}>
+            <AboutUs handleClick={scrollToMenuItems} />
 
-        {/* TODO: handle no items */}
-        {itemsData.length > 0 ? <Meals /> : <h1>No items in the menu</h1>}
-      </section>
+            <Grid
+              container
+              direction="column"
+              alignItems="center"
+              justifyContent="space-evenly"
+              paddingY={{
+                xs: "1.5rem",
+                sm: "2rem",
+              }}
+              spacing={{
+                xs: 2,
+                sm: 4,
+              }}
+              ref={menuItemsRef}
+            >
+              <Grid item>
+                <Typography
+                  textTransform="uppercase"
+                  variant="h5"
+                  fontSize={{
+                    xs: "1.5rem",
+                    sm: "2rem",
+                  }}
+                >
+                  Available Foods
+                </Typography>
+              </Grid>
+
+              <Meals />
+            </Grid>
+          </section>
+        </Box>
+      </Box>
+
+      <SuccessAlert
+        openSnackbar={openSnackbar}
+        setOpenSnackbar={setOpenSnackbar}
+      />
     </CartProvider>
   );
 };

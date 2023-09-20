@@ -6,7 +6,7 @@ const itemsContext = createContext({
   switchPage: null,
   addNewItem: (item) => {},
   removeItem: (id) => {},
-  updateItem: (id) => {},
+  updateItem: (id, updatedItem) => {},
   togglePage: () => {},
 });
 

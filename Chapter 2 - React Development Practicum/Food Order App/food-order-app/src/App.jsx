@@ -6,16 +6,19 @@ import { useThemeContext } from "./theme/theme-context";
 import Users from "./pages/Users";
 import Admin from "./pages/Admin";
 import Footer from "./components/Footer/Footer";
+import OrderedItemsProvider from "./store/OrderedItemsProvider";
 
 function App() {
-  const itemsContext = useItemscontext();
+  const { switchPage } = useItemscontext();
   const { theme } = useThemeContext();
 
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
 
-      {itemsContext.switchPage ? <Users /> : <Admin />}
+      <OrderedItemsProvider>
+        {switchPage ? <Users /> : <Admin />}
+      </OrderedItemsProvider>
       <Footer />
     </ThemeProvider>
   );

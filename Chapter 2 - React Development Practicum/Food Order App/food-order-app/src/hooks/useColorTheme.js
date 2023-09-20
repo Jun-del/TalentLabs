@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { MODE_LOCAL_STORAGE_KEY } from "../constant";
 import { createTheme } from "@mui/material";
-import { getDesignTokens } from "./theme-color";
+import { getDesignTokens } from "../theme/theme-color";
 
 export const useColorTheme = () => {
   const [mode, setMode] = useState(getUserDefaultTheme());

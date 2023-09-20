@@ -1,17 +1,17 @@
 import Box from "@mui/material/Box";
 import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
-
 import { useItemscontext } from "../../store/items-context";
 import { useThemeContext } from "../../theme/theme-context";
 import ThemeToggle from "../custom-components/ThemeToggle";
-import logoImage from "../../assets/logo.png";
+// Icons from https://www.svgrepo.com/
+import logoWhite from "../../assets/food-logo.svg";
+import logoBlack from "../../assets/food-logo-dark.svg";
 
 const Footer = () => {
   const { switchPage, togglePage } = useItemscontext();
-  const { theme } = useThemeContext();
+  const { theme, mode } = useThemeContext();
 
-  // * Reverse the footer color
   const reversedBackgroundColor = theme.palette.getContrastText(
     theme.palette.background.default
   );
@@ -29,8 +29,11 @@ const Footer = () => {
       <Stack spacing={2} alignItems="center">
         <ThemeToggle
           sx={{
-            bgcolor: reversedBackgroundColor,
             color: reversedTextColor,
+            "&:hover": {
+              bgcolor: reversedTextColor,
+              color: reversedBackgroundColor,
+            },
           }}
         />
         <Box
@@ -42,7 +45,7 @@ const Footer = () => {
             maxWidth: { xs: 150, md: 250, lg: 300 },
           }}
           alt="footer logo"
-          src={logoImage}
+          src={mode === "light" ? logoBlack : logoWhite}
           loading="lazy"
         />
         <Button variant="contained" sx={{ width: "30%" }} onClick={togglePage}>

@@ -8,6 +8,7 @@ const cartContext = createContext({
   removeItem: (id) => {},
   incrementItem: (id) => {},
   decrementItem: (id) => {},
+  clearCart: () => {},
 });
 
 export default cartContext;

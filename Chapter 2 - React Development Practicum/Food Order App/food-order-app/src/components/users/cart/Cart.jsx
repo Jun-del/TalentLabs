@@ -12,27 +12,34 @@ import IconButton from "@mui/material/IconButton";
 import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
 import DeleteIcon from "@mui/icons-material/Delete";
-import { useCartContext } from "../../store/cart-context";
-import { ORDER_ITEMS_LOCAL_STORAGE_KEY } from "../../constant";
+import { useCartContext } from "../../../store/cart-context";
+import { useOrderedItemsContext } from "../../../store/ordered-items-context";
 
-const Cart = ({ open, handleClose }) => {
+const Cart = ({ open, handleClose, handleSnackbarOpen }) => {
+  const { addOrderItem } = useOrderedItemsContext();
+
   const {
     items: cartItems,
     totalAmount,
     removeItem,
     incrementItem,
     decrementItem,
+    clearCart,
   } = useCartContext();
 
   function handleOrderClick() {
-    localStorage.setItem(
-      ORDER_ITEMS_LOCAL_STORAGE_KEY,
-      JSON.stringify(cartItems)
-    );
+    if (cartItems.length < 1) {
+      return;
+    }
 
-    // TODO: display a receipt
-    alert(`Your order is: ${JSON.stringify(cartItems, null, 2)}`);
+    addOrderItem({
+      customerId: crypto.randomUUID(),
+      totalPriceForAllItems: totalAmount,
+      orderedItems: [...cartItems],
+    });
 
+    handleSnackbarOpen();
+    clearCart();
     handleClose();
   }
 
@@ -44,8 +51,27 @@ const Cart = ({ open, handleClose }) => {
       PaperProps={{ sx: { borderRadius: "20px" } }}
       fullWidth
     >
-      <DialogTitle>Food Cart</DialogTitle>
-      <DialogContent>
+      <DialogTitle
+        sx={{
+          fontWeight: "bold",
+          textAlign: "center",
+          fontSize: {
+            xs: "1rem",
+            sm: "1.5rem",
+          },
+          paddingY: 1,
+        }}
+      >
+        Food Cart
+      </DialogTitle>
+
+      <Divider />
+
+      <DialogContent
+        sx={{
+          paddingY: 0,
+        }}
+      >
         <Box>
           {cartItems.length > 0 ? (
             <ul
@@ -62,16 +88,25 @@ const Cart = ({ open, handleClose }) => {
                       justifyContent: "space-between",
                       alignItems: "center",
                       width: "100%",
+                      marginBottom: 1,
+                      borderBottom: "1px solid #e0e0e0",
                     }}
                   >
                     <Box>
-                      {/* TODO: something about the style */}
-                      <Typography>{item.name}</Typography>
-                      <Typography>RM {item.price}</Typography>
+                      <Typography fontWeight="500">{item.name}</Typography>
+                      <Typography variant="subtitle2">
+                        RM {item.price}
+                      </Typography>
                     </Box>
 
                     <Box>
-                      <Stack direction="row">
+                      <Stack direction="row" alignItems="center" gap={0.5}>
+                        <Box sx={{ border: 1.5, borderRadius: 1, paddingX: 1 }}>
+                          <Typography sx={{ userSelect: "none" }}>
+                            {item.quantity}
+                          </Typography>
+                        </Box>
+
                         <IconButton
                           aria-label="decrement menu item amount by 1"
                           onClick={() => {
@@ -105,17 +140,35 @@ const Cart = ({ open, handleClose }) => {
               ))}
             </ul>
           ) : (
-            "No items in cart"
+            <Box paddingY={1}>
+              <Typography variant="h5">No items in cart</Typography>
+            </Box>
           )}
         </Box>
 
-        <Divider />
-
-        <Box>Total Price: RM {totalAmount}</Box>
+        <Box marginTop={1}>
+          {cartItems.length > 0 ? (
+            <Typography
+              fontWeight="bold"
+              fontSize={{
+                xs: "1rem",
+                sm: "1.25rem",
+              }}
+            >
+              Total Price: RM {totalAmount}
+            </Typography>
+          ) : (
+            <Typography variant="body1">Add food to the cart</Typography>
+          )}
+        </Box>
       </DialogContent>
       <DialogActions>
-        <Button onClick={handleClose}>Cancel</Button>
-        <Button variant="contained" onClick={handleOrderClick}>
+        <Button onClick={handleClose}>Close</Button>
+        <Button
+          variant="contained"
+          onClick={handleOrderClick}
+          disabled={cartItems.length < 1}
+        >
           Order
         </Button>
       </DialogActions>
@@ -126,6 +179,7 @@ const Cart = ({ open, handleClose }) => {
 Cart.propTypes = {
   open: PropTypes.bool.isRequired,
   handleClose: PropTypes.func.isRequired,
+  handleSnackbarOpen: PropTypes.func.isRequired,
 };
 
 export default Cart;

@@ -1,5 +1,6 @@
 import { useRef } from "react";
 import PropTypes from "prop-types";
+import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import { styled } from "@mui/material/styles";
 import CloudUploadIcon from "@mui/icons-material/CloudUpload";
@@ -16,7 +17,7 @@ const VisuallyHiddenInput = styled("input")({
   width: 1,
 });
 
-export default function InputFileUpload({ handleFileChange }) {
+export default function InputFileUpload({ handleFileChange, ...props }) {
   const uploadRef = useRef(null);
 
   // * To allow user to use key to click the uplaod csv button, MUI doesn't support that
@@ -29,11 +30,13 @@ export default function InputFileUpload({ handleFileChange }) {
   }
 
   return (
-    <>
+    <Box {...props}>
       <Button
         component="label"
         variant="contained"
-        startIcon={<CloudUploadIcon />}
+        startIcon={
+          <CloudUploadIcon sx={{ display: { xs: "none", sm: "block" } }} />
+        }
         onKeyDown={handleUpload}
       >
         Upload file
@@ -42,12 +45,11 @@ export default function InputFileUpload({ handleFileChange }) {
           hidden
           type="file"
           accept="image/*"
-          required
           name="upload-image-input"
           onChange={handleFileChange}
         />
       </Button>
-    </>
+    </Box>
   );
 }
 

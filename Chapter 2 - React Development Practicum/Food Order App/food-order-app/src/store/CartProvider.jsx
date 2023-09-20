@@ -45,6 +45,9 @@ function cartReducer(state, action) {
     case "REMOVE_ITEM": {
       return state.filter((item) => item.id !== action.id);
     }
+    case "CLEAR_CART": {
+      return [];
+    }
     default: {
       return state;
     }
@@ -62,7 +65,6 @@ export default function CartProvider({ children }) {
   //   },
   //  ]
 
-  // TODO: use Zod to validate the local storage data
   const initialCartItems =
     JSON.parse(localStorage.getItem(CART_ITEMS_LOCAL_STORAGE_KEY)) || [];
 
@@ -91,9 +93,14 @@ export default function CartProvider({ children }) {
     dispatch({ type: "DECREMENT", id });
   }
 
+  function clearCart() {
+    dispatch({ type: "CLEAR_CART" });
+  }
+
   const totalAmount = useMemo(() => {
     return cartItems.reduce((acc, item) => {
-      return (acc + item.price * item.quantity).toFixed(2);
+      const totalPrice = acc + item.price * item.quantity;
+      return Number(totalPrice.toFixed(2));
     }, 0);
   }, [cartItems]);
 
@@ -104,6 +111,7 @@ export default function CartProvider({ children }) {
     removeItem,
     incrementItem: increment,
     decrementItem: decrement,
+    clearCart,
   };
 
   return <cartContext.Provider value={value}>{children}</cartContext.Provider>;
