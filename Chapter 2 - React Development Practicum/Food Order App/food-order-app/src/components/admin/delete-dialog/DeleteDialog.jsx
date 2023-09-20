@@ -54,7 +54,7 @@ export default function DeleteDialog({
           <Button onClick={handleClose}>Cancel</Button>
           <Button
             variant="outlined"
-            color="warning"
+            color="error"
             onClick={handleDelete}
             autoFocus
           >

@@ -15,6 +15,7 @@ const AboutUs = ({ handleClick }) => {
       sx={{
         padding: { xs: "1.5rem 1rem", sm: "2rem 4rem" },
       }}
+      bgcolor="background.paper"
     >
       <Grid item xs={12} marginBottom={2}>
         <Typography
@@ -79,7 +80,9 @@ const AboutUs = ({ handleClick }) => {
               handleClick();
             }}
           >
-            <Typography variant="body1">LEARN MORE</Typography>
+            <Typography color="text.secondary" variant="body1">
+              LEARN MORE
+            </Typography>
           </Link>
         </Stack>
       </Grid>

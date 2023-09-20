@@ -60,9 +60,7 @@ const OrderItemTable = () => {
               ))}
 
               <TableRow>
-                <TableCell colSpan={3}>
-                  {customer.customerId.slice(0, 13)}
-                </TableCell>
+                <TableCell colSpan={3}>{customer.customerId}</TableCell>
                 <TableCell align="right" colSpan={2}>
                   Total Amount:
                 </TableCell>

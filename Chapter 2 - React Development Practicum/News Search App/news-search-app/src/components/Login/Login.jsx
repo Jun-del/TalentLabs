@@ -88,7 +88,7 @@ const Login = () => {
           {/* Grid for Title */}
           <Grid item p={1} marginBottom={2}>
             <Typography
-              variant="h1"
+              variant="h2"
               textAlign="center"
               sx={{ userSelect: "none" }}
               color={"text.secondary"}

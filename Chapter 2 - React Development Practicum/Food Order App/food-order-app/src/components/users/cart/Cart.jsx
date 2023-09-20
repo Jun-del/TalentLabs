@@ -163,7 +163,9 @@ const Cart = ({ open, handleClose, handleSnackbarOpen }) => {
         </Box>
       </DialogContent>
       <DialogActions>
-        <Button onClick={handleClose}>Close</Button>
+        <Button color="info" onClick={handleClose}>
+          Close
+        </Button>
         <Button
           variant="contained"
           onClick={handleOrderClick}

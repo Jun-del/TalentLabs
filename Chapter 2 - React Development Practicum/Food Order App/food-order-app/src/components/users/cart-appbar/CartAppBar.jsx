@@ -19,7 +19,6 @@ const CartAppBar = ({ handleClick }) => {
   return (
     <Fab
       variant="extended"
-      color="primary"
       aria-label="food-cart"
       onClick={handleClick}
       sx={{
@@ -27,6 +26,7 @@ const CartAppBar = ({ handleClick }) => {
         top: "30px",
         right: "30px",
       }}
+      color="primary"
     >
       <Box
         sx={{
@@ -37,12 +37,12 @@ const CartAppBar = ({ handleClick }) => {
         }}
       >
         {isSmallScreen ? (
-          <Badge badgeContent={itemsCount} color="secondary">
+          <Badge badgeContent={itemsCount} color="info">
             <ShoppingCartIcon />
           </Badge>
         ) : (
           <>
-            <ShoppingCartIcon sx={{ mr: 1 }} />
+            <ShoppingCartIcon sx={{ mr: 1 }} color="secondary" />
             <Typography align="center" sx={{ flexGrow: 1, mr: 1.5 }}>
               Your Cart
             </Typography>

@@ -13,6 +13,7 @@ const Footer = () => {
   const { theme, mode } = useThemeContext();
 
   const reversedBackgroundColor = theme.palette.getContrastText(
+    // theme.palette.background.default
     theme.palette.background.default
   );
   const reversedTextColor = theme.palette.getContrastText(

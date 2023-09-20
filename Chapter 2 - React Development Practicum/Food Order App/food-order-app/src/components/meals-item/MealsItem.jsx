@@ -71,16 +71,24 @@ const MealsItem = ({
         <CardActions>
           {switchPage ? (
             // * If user, add to cart
-            <Button variant="outlined" onClick={addItemToCart}>
+            <Button variant="contained" color="info" onClick={addItemToCart}>
               Add to Cart
             </Button>
           ) : (
             // * If admin, allow deletion of catalog items
             <>
-              <Button variant="outlined" onClick={() => handleEditItem(id)}>
+              <Button
+                variant="contained"
+                color="success"
+                onClick={() => handleEditItem(id)}
+              >
                 Edit
               </Button>
-              <Button variant="outlined" onClick={() => handleDeleteItem(id)}>
+              <Button
+                variant="outlined"
+                color="warning"
+                onClick={() => handleDeleteItem(id)}
+              >
                 Delete
               </Button>
             </>
