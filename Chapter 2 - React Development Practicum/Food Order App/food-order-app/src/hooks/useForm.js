@@ -13,7 +13,7 @@ export function useForm(initialValues, validationSchema) {
       [fieldName]: value,
     }));
 
-    // validation schema = { fieldName: { isRequired: boolean, validate: () => {} } }
+    // validation schema = { fieldName: { validate: () => {} } }
     const fieldValidation = validationSchema[fieldName];
 
     if (fieldValidation && typeof fieldValidation.validate === "function") {

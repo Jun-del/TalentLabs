@@ -27,20 +27,16 @@ export const useColorTheme = () => {
   };
 };
 
-// Helper function
 function getUserDefaultTheme() {
   const localStorageMode = localStorage.getItem(MODE_LOCAL_STORAGE_KEY);
 
-  // Check if the user has previously selected a preference
   if (
     localStorageMode !== null &&
-    // Check if the value is a valid theme (light or dark, prevent malicious code)
     (localStorageMode === "dark" || localStorageMode === "light")
   ) {
     return localStorageMode;
   }
 
-  // Else check for user preference
   const prefersDarkMode =
     window.matchMedia &&
     window.matchMedia("(prefers-color-scheme: dark)").matches;

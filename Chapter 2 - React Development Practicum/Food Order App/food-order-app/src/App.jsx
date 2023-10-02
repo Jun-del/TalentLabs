@@ -1,4 +1,3 @@
-import "./App.css";
 import CssBaseline from "@mui/material/CssBaseline";
 import { ThemeProvider } from "@mui/material/styles";
 import { useItemscontext } from "./store/items-context";
@@ -17,7 +16,7 @@ function App() {
       <CssBaseline />
 
       <OrderedItemsProvider>
-        {switchPage ? <Users /> : <Admin />}
+        {switchPage ? <Users id="user-page" /> : <Admin />}
       </OrderedItemsProvider>
       <Footer />
     </ThemeProvider>

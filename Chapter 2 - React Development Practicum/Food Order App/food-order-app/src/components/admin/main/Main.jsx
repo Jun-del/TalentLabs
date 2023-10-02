@@ -167,6 +167,7 @@ const Main = () => {
       </Box>
 
       <AdminFoodForm
+        key={`${editItemId}-${openAddItemForm}-${editItemId !== null}`}
         open={openAddItemForm}
         setOpenItemForm={setOpenItemForm}
         isEdit={editItemId !== null}

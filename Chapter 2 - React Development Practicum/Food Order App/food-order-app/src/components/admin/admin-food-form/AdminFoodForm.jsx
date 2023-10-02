@@ -59,9 +59,8 @@ const AdminFoodForm = ({ open, setOpenItemForm, isEdit, editItemId }) => {
       setValues(initialFormValues);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [open]);
+  }, []);
 
-  // * To handle image upload
   function handleFileChange(e) {
     if (e.target.files === null || e.target.files.length === 0) {
       return;
@@ -78,7 +77,6 @@ const AdminFoodForm = ({ open, setOpenItemForm, isEdit, editItemId }) => {
         )}MB) exceeds the maximum allowed 2MB. Please choose a smaller file.`,
       }));
 
-      // Reset the input
       setValues((prevValues) => ({
         ...prevValues,
         image: { preview: "", raw: "" },
@@ -109,19 +107,14 @@ const AdminFoodForm = ({ open, setOpenItemForm, isEdit, editItemId }) => {
         body: formData,
       });
 
-      // Check if the response status is OK (status code 200)
       if (response.ok) {
-        // Parse the response as JSON
         const responseData = await response.json();
 
-        // Check if the 'success' field in the response is true
         if (responseData.success) {
-          // Access the image data from the 'data' object
           const data = responseData.data;
 
           return data;
         } else {
-          // Handle the case where the server reports an error (e.g., data.success is false)
           console.error("Image upload failed:", responseData);
           setFormErrors((prevFormErrors) => ({
             ...prevFormErrors,
@@ -129,11 +122,9 @@ const AdminFoodForm = ({ open, setOpenItemForm, isEdit, editItemId }) => {
           }));
         }
       } else {
-        // Handle the case where the HTTP request itself failed (e.g., response status is not 200)
         console.error("HTTP error:", response.status);
       }
     } catch (error) {
-      // Handle fetch error (e.g., network error)
       console.error("Fetch error:", error);
     }
   }
@@ -165,7 +156,6 @@ const AdminFoodForm = ({ open, setOpenItemForm, isEdit, editItemId }) => {
       validationErrors.image = `Image size exceeds the maximum allowed 2MB. Please choose a smaller file.`;
     }
 
-    // If there are validation errors, set them and return
     if (Object.keys(validationErrors).length > 0) {
       setFormErrors(validationErrors);
       setIsLoading(false);
@@ -173,10 +163,10 @@ const AdminFoodForm = ({ open, setOpenItemForm, isEdit, editItemId }) => {
     }
 
     try {
-      // wait for the image to be uploaded to the server
-      const uploadedImage = values.image.raw.lastModifiedDate
-        ? await uploadImage(values.image.raw)
-        : values.image.raw;
+      const uploadedImage =
+        values.image.raw.lastModifiedDate || !values.image.raw.display_url
+          ? await uploadImage(values.image.raw)
+          : values.image.raw;
 
       if (uploadedImage) {
         const newItem = {
@@ -224,9 +214,9 @@ const AdminFoodForm = ({ open, setOpenItemForm, isEdit, editItemId }) => {
           <DialogContent>
             <TextField
               margin="dense"
-              id="name"
-              name="name-input"
               label="Name"
+              id="name"
+              name="name"
               value={values.name}
               onChange={(e) => {
                 handleInputChange("name", e.target.value);
@@ -240,9 +230,9 @@ const AdminFoodForm = ({ open, setOpenItemForm, isEdit, editItemId }) => {
             />
             <TextField
               margin="dense"
-              id="description"
-              name="description-input"
               label="Description"
+              id="description"
+              name="description"
               value={values.description}
               onChange={(e) => {
                 handleInputChange("description", e.target.value);
@@ -264,7 +254,7 @@ const AdminFoodForm = ({ open, setOpenItemForm, isEdit, editItemId }) => {
               }}
               margin="dense"
               id="price"
-              name="price-input"
+              name="price"
               label="Price"
               value={values.price}
               onChange={(e) => {

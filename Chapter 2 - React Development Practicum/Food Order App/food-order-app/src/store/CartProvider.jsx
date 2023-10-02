@@ -39,7 +39,7 @@ function cartReducer(state, action) {
             };
           }
         }
-        return item; // Return the item unchanged if it's not the one to decrement
+        return item;
       });
     }
     case "REMOVE_ITEM": {
@@ -55,16 +55,6 @@ function cartReducer(state, action) {
 }
 
 export default function CartProvider({ children }) {
-  // * Mock for cart item:
-  // const initialCartItems = [
-  //   {
-  //     id: "1",
-  //     name: "Burger",
-  //     price: 10,
-  //     quantity: 1,
-  //   },
-  //  ]
-
   const initialCartItems =
     JSON.parse(localStorage.getItem(CART_ITEMS_LOCAL_STORAGE_KEY)) || [];
 

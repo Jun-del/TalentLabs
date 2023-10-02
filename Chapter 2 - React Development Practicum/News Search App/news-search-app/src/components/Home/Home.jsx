@@ -18,14 +18,10 @@ function App() {
   const [currentPage, setCurrentPage] = useState(Number(PAGE_NO));
   const [searchIsLoading, setSearchIsLoading] = useState(false);
 
-  // * Fetch initial search results (when the user search for a keyword)
   const fetchInitialSearchResults = useCallback(async () => {
-    // Reset the current page to 1 when the user search for a new keyword
     setCurrentPage(1);
 
-    // If keyword is empty, clear the search result
     if (keyword === "") {
-      // If keyword and search result is already empty, do nothing
       if (searchResult.length === 0) {
         return;
       }
@@ -63,14 +59,11 @@ function App() {
     fetchInitialSearchResults();
   }, [fetchInitialSearchResults]);
 
-  // * Load more search results (when the user clicks on the load more button)
   function handleLoadMore() {
     setCurrentPage((prev) => prev + 1);
   }
 
-  // * Fetch additional search results (load more button is clicked)
   const fetchNextPage = useCallback(async () => {
-    // If it is the initial fetch, do nothing
     if (currentPage === 1) {
       return;
     }

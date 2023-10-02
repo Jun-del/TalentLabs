@@ -16,12 +16,11 @@ const formValidationSchema = {
 
       if (Number(value) === 0) return "Price must be greater than 0";
 
-      const regex = /^[+-]?([0-9]*[.])?[0-9]+$/; // Allow positive/negative numbers, including decimals
+      const regex = /^[+-]?([0-9]*[.])?[0-9]+$/;
       if (!regex.test(value)) {
         return "Invalid price format. Please enter a valid number.";
       }
 
-      // Check for additional invalid formats
       if (
         value.includes("-") ||
         value.includes("+") ||
@@ -37,7 +36,7 @@ const formValidationSchema = {
         return "Price must be less than 1000";
       }
 
-      return undefined; // No error
+      return undefined;
     },
   },
   image: {

@@ -7,12 +7,10 @@ export const useColorTheme = () => {
   const [mode, setMode] = useState("light");
 
   useEffect(() => {
-    // * Check the user's local storage for dark mode settings
     const lightDarkMode = localStorage.getItem(DARK_MODE_LOCAL_STORAGE_KEY);
     if (lightDarkMode && ["light", "dark"].includes(lightDarkMode)) {
       setMode(lightDarkMode);
     } else {
-      // * Check the user's OS color scheme
       const isDarkMode =
         window.matchMedia &&
         window.matchMedia("(prefers-color-scheme:dark)").matches;
@@ -26,7 +24,6 @@ export const useColorTheme = () => {
     localStorage.setItem(DARK_MODE_LOCAL_STORAGE_KEY, newMode);
   };
 
-  // * For custom theme
   const modifiedTheme = useMemo(
     () => createTheme(getDesignTokens(mode)),
     [mode],

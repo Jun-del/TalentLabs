@@ -3,17 +3,14 @@ import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
-// Photo by <a href="https://unsplash.com/@1ncreased?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Lidye</a> on <a href="https://unsplash.com/photos/1Shk_PkNkNw?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
+// Photo by <a href="https://unsplash.com/@1ncreased?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Lidye</a> on
+// <a href="https://unsplash.com/photos/1Shk_PkNkNw?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
 import bannerImage from "../../../assets/banner.jpg";
 
 const Banner = ({ handleClick }) => {
-  // const imageUrl =
-  //   "https://images.unsplash.com/photo-1693875161720-b0c2401c1874?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1099&q=80";
-
   return (
     <Box
       sx={{
-        // backgroundImage: `url(${imageUrl})`,
         backgroundImage: `url(${bannerImage})`,
         backgroundPosition: "center",
         backgroundSize: "cover",

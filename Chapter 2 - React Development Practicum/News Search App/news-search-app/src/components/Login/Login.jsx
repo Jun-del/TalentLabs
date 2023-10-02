@@ -7,6 +7,7 @@ import Typography from "@mui/material/Typography";
 import LinearProgress from "@mui/material/LinearProgress";
 import PasswordTextField from "../custom-components/PasswordTextField";
 import ErrorSnackbar from "../custom-components/ErrorSnackbar";
+
 import registeredUsers from "../../mock-data/mock-registered-users";
 import {
   LOGIN_LOCAL_STORAGE_KEY,
@@ -27,7 +28,7 @@ const Login = () => {
 
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [isLoginError, setIsLoginError] = useState(false); // If wrong username or password
+  const [isLoginError, setIsLoginError] = useState(false);
   const [isLoginInProgress, setIsLoginInProgress] = useState(false);
 
   function handleUsernameChange(e) {
@@ -77,7 +78,6 @@ const Login = () => {
         alignItems="center"
         sx={{ minHeight: "100vh", width: "100%" }}
       >
-        {/* Grid item which is a container for both the label and form */}
         <Grid
           item
           container
@@ -85,7 +85,6 @@ const Login = () => {
           justifyContent="center"
           alignItems="center"
         >
-          {/* Grid for Title */}
           <Grid item p={1} marginBottom={2}>
             <Typography
               variant="h2"
@@ -97,7 +96,6 @@ const Login = () => {
             </Typography>
           </Grid>
 
-          {/* Grid for form */}
           <Grid item width={{ sm: "50%", lg: "35%" }}>
             <form onSubmit={handleSubmit}>
               <Grid container direction="column" flexWrap="wrap" gap={2}>

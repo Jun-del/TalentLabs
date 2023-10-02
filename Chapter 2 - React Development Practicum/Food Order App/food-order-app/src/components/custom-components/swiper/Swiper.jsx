@@ -13,7 +13,6 @@ const CustomSwiper = ({ images }) => {
       spaceBetween={50}
       pagination={{ clickable: true, el: ".swiper-style" }}
       slidesPerView={3}
-      // Responsive breakpoints
       breakpoints={{
         0: {
           slidesPerView: 2,

@@ -1,4 +1,4 @@
-// Mock user data
+// Mock user login data
 
 const registeredUsers = [
   {

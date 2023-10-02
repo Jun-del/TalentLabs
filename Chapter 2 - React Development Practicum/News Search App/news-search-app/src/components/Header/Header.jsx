@@ -6,7 +6,8 @@ import Button from "@mui/material/Button";
 import Chip from "@mui/material/Chip";
 import Typography from "@mui/material/Typography";
 import FaceIcon from "@mui/icons-material/Face";
-import DarkModeToggle from "../DarkModeToggle/DarkModeToggle";
+import DarkModeToggle from "../custom-components/DarkModeToggle";
+
 import {
   LOGIN_LOCAL_STORAGE_KEY,
   USERNAME_LOCAL_STORAGE_KEY,
@@ -26,7 +27,7 @@ const Header = () => {
     setNews,
     setSearchResult,
   } = useHomeContext();
-  const [searchTerm, setSearchTerm] = useState(""); // keyword
+  const [searchTerm, setSearchTerm] = useState("");
   const [username, setUsername] = useState(localStorageUsername);
 
   const navigate = useNavigate();
@@ -37,7 +38,6 @@ const Header = () => {
     }
   }, [isLoggedIn, navigate]);
 
-  // * If user press enter on search text field
   function handleKeyPress(e) {
     if (e.key === "Enter") {
       handleSetKeyword(searchTerm);
@@ -52,10 +52,7 @@ const Header = () => {
     setNews("");
 
     localStorage.removeItem(USERNAME_LOCAL_STORAGE_KEY);
-
-    // * Either remove the isLoggedIn key or set it to false
     localStorage.removeItem(LOGIN_LOCAL_STORAGE_KEY);
-    // localStorage.setItem(LOGIN_LOCAL_STORAGE_KEY, JSON.stringify(false));
   }
 
   return (

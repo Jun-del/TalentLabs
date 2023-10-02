@@ -7,11 +7,7 @@ import CardActions from "@mui/material/CardActions";
 import Avatar from "@mui/material/Avatar";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
-import {
-  red,
-  green,
-  // blue
-} from "@mui/material/colors";
+import { red, green } from "@mui/material/colors";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import { CardActionArea } from "@mui/material";
 import { useHomeContext } from "../../context/HomeContext";
@@ -30,19 +26,6 @@ const CustomCard = ({ author, date, url, urlToImage, content }) => {
     return `${year}-${month}-${day}`; // YYYY-MM-DD
   }
 
-  // * Randomize the card colors (not used because if the card
-  // * rerenders, the card changes color again)
-  // const colors = [red, blue, green];
-
-  // function getRandomColor(colors) {
-  //   const randomShade = Math.floor(Math.random() * 9) * 100; // 0 - 800
-  //   const randomColor = colors[Math.floor(Math.random() * colors.length)];
-
-  //   const color = randomColor[randomShade]; // e.g., red[500]
-
-  //   return color;
-  // }
-
   return (
     <Card
       sx={{
@@ -56,7 +39,6 @@ const CustomCard = ({ author, date, url, urlToImage, content }) => {
     >
       <CardHeader
         avatar={
-          // <Avatar sx={{ bgcolor: getRandomColor(colors) }} aria-label="recipe">
           <Avatar sx={{ bgcolor: green[500] }} aria-label="recipe">
             {avatarName}
           </Avatar>
@@ -92,7 +74,6 @@ const CustomCard = ({ author, date, url, urlToImage, content }) => {
               ? red[400]
               : "primary",
           }}
-          // sx={{ "&:hover": { color: red[400] } }}
           color="secondary"
         >
           <FavoriteIcon />

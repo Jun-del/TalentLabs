@@ -6,6 +6,9 @@
  *  image: object
  * */
 
+// * Mock meals initial data is only for display, does not work on edit
+//  since the data format is different
+
 export const mockMealsItem = [
   {
     id: "1dfsgsdgf",

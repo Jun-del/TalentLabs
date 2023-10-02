@@ -8,9 +8,6 @@ import {
 const HomeContext = createContext();
 
 export function HomeContextProvider({ children }) {
-  /**
-   * Login state
-   */
   const localStorageIsUserLoggedIn =
     JSON.parse(localStorage.getItem(LOGIN_LOCAL_STORAGE_KEY)) || false;
   const localStorageMyFavourite =
@@ -22,31 +19,21 @@ export function HomeContextProvider({ children }) {
   const [myFavourites, setMyFavourites] = useState(localStorageMyFavourite);
   const [news, setNews] = useState([]);
 
-  /**
-   * Keyword
-   */
-  // * Only update the keyword when the user clicks on the search button to
-  // * avoid unnecessary re-render, which will trigger the useEffect hook
   function handleSetKeyword(searchTerm) {
     setKeyword(searchTerm);
   }
 
-  /**
-   * MyFavourite
-   */
   function updateMyFavourite(title, url) {
     const newFavourite = searchResult.find(
       (newsItem) => newsItem.title === title && newsItem.url === url,
     );
 
-    // * Check if the news is already in favourites to avoid duplicates
     const isAlreadyFavourite = myFavourites.some(
       (favourite) =>
         favourite.title === newFavourite.title &&
         favourite.url === newFavourite.url,
     );
 
-    // Remove the news from favourites if it is already favourited
     if (isAlreadyFavourite) {
       setMyFavourites((prev) =>
         prev.filter(
@@ -56,7 +43,6 @@ export function HomeContextProvider({ children }) {
         ),
       );
     } else {
-      // Add the news to favourites if it is not favourited
       setMyFavourites((prev) => [...prev, newFavourite]);
     }
   }
@@ -69,7 +55,6 @@ export function HomeContextProvider({ children }) {
   }, [myFavourites]);
 
   function clearMyFavourites() {
-    // * Early return to avoid unnecessary re-render
     if (myFavourites.length === 0) {
       return;
     }
@@ -78,9 +63,6 @@ export function HomeContextProvider({ children }) {
     localStorage.setItem(FAVOURITES_LOCAL_STORAGE_KEY, JSON.stringify([]));
   }
 
-  /**
-   * News
-   */
   useEffect(() => {
     setNews(searchResult);
   }, [searchResult]);

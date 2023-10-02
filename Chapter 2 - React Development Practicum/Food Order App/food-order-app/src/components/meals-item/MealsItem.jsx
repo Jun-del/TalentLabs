@@ -69,12 +69,10 @@ const MealsItem = ({
         </CardContent>
         <CardActions>
           {switchPage ? (
-            // * If user, add to cart
             <Button variant="contained" color="info" onClick={addItemToCart}>
               Add to Cart
             </Button>
           ) : (
-            // * If admin, allow deletion of catalog items
             <>
               <Button
                 variant="contained"

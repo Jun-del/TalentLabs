@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 import itemsContext from "./items-context";
 import { useEffect, useState } from "react";
 import { MENU_ITEMS_LOCAL_STORAGE_KEY } from "../constant";
-import { mockMealsItem } from "../mock-data/mockMealsItem";
+// import { mockMealsItem } from "../mock-data/mockMealsItem";
 
 export default function ItemsProvider({ children }) {
   const [switchPage, setSwitchPage] = useState(true);
@@ -12,7 +12,11 @@ export default function ItemsProvider({ children }) {
   );
 
   if (!initialMenuItems || initialMenuItems.length === 0) {
-    initialMenuItems = mockMealsItem;
+    // * Mock meals initial data is only for display, does not work on edit
+    //  since the data format is different
+
+    // initialMenuItems = mockMealsItem;
+    initialMenuItems = [];
   }
 
   const [menuItemsData, setMenuItemsData] = useState(initialMenuItems);

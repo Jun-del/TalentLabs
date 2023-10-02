@@ -9,7 +9,7 @@ import { useHomeContext } from "../../context/HomeContext";
 
 const DisplayResults = ({ handleLoadMore, searchIsLoading }) => {
   const { keyword, news } = useHomeContext();
-  const title = keyword; // For display purpose, no state needed
+  const title = keyword;
 
   return (
     <>
@@ -26,7 +26,6 @@ const DisplayResults = ({ handleLoadMore, searchIsLoading }) => {
           </Grid>
         </Grid>
       ) : (
-        // Grid for display result and button
         <Grid
           container
           spacing={2}
@@ -39,7 +38,6 @@ const DisplayResults = ({ handleLoadMore, searchIsLoading }) => {
           </Grid>
 
           <Grid item>
-            {/* Grid for display results card */}
             <Grid
               container
               spacing={{ xs: 1, lg: 2 }}

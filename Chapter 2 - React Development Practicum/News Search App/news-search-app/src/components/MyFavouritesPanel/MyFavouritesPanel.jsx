@@ -51,7 +51,6 @@ const MyFavouritesPanel = () => {
               }
               p={1}
             >
-              {/* rel="noreferrer" for security purpose */}
               <a href={favourite.url} target="_blank" rel="noreferrer">
                 <Typography variant="subtitle1">{favourite.title}</Typography>
               </a>
