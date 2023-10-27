@@ -602,6 +602,7 @@ return (
 
 - React batches or groups multiple state updates together before re-rendering the component
 - When updating state based on its previous value, use functional updates to ensure correctness, especially in asynchronous scenarios.
+- State update are not immediate, they will only be updated on the next render so your current state is still stale
 
 ```jsx
 // Problem: count will only be incremented once
@@ -611,6 +612,7 @@ const increment = () => {
   // Avoid this (may lead to unexpected behavior)
   setCount(count + 1); // count(0) + 1 (1)
   setCount(count + 1); // count(0) + 1 (1) again, not 2
+  // count is still one because the count is not yet updated (rerender)
 };
 
 // Solution: Correct way using functional update
