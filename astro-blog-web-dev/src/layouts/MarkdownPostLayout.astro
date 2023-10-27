@@ -1,0 +1,93 @@
+---
+import BaseLayout from "./BaseLayout.astro";
+const { frontmatter } = Astro.props;
+---
+
+<style>
+	a {
+		color: #00539f;
+	}
+
+	.tags {
+		display: flex;
+		flex-wrap: wrap;
+		margin: 0 auto;
+	}
+
+	.tag {
+		margin: 0.25em;
+		border: dotted 1px #a1a1a1;
+		border-radius: 0.5em;
+		padding: 0.5em 1em;
+		font-size: 1.15em;
+		background-color: #f8fcfd;
+	}
+</style>
+
+<!-- https://timneubauer.dev/blog/copy-code-button-in-astro/ -->
+<script>
+	let copyButtonLabel = "Copy Code";
+	let codeBlocks = Array.from(document.querySelectorAll("pre"));
+
+	for (let codeBlock of codeBlocks) {
+		let wrapper = document.createElement("div");
+		wrapper.style.position = "relative";
+
+		let copyButton = document.createElement("button");
+		copyButton.className = "copy-code";
+		copyButton.innerHTML = copyButtonLabel;
+
+		codeBlock.setAttribute("tabindex", "0");
+		codeBlock.appendChild(copyButton);
+		// wrap codebock with relative parent element
+		codeBlock.parentNode?.insertBefore(wrapper, codeBlock);
+		wrapper.appendChild(codeBlock);
+
+		copyButton.addEventListener("click", async () => {
+			await copyCode(codeBlock, copyButton);
+		});
+	}
+
+	async function copyCode(block, button) {
+		let code = block.querySelector("code");
+		let text = code.innerText;
+
+		await navigator.clipboard.writeText(text);
+
+		// visual feedback that task is completed
+		button.innerText = "Code Copied";
+
+		setTimeout(() => {
+			button.innerText = copyButtonLabel;
+		}, 700);
+	}
+</script>
+
+<BaseLayout pageTitle={frontmatter.title}>
+	<p><em>{frontmatter.description}</em></p>
+	<p>{frontmatter.pubDate.slice(0, 10)}</p>
+
+	<p>Written by: {frontmatter.author}</p>
+
+	{
+		frontmatter.image && (
+			<img
+				src={frontmatter.image.url}
+				width="300"
+				alt={frontmatter.image.alt}
+			/>
+		)
+	}
+
+	<div class="tags">
+		{
+			frontmatter.tags.map((tag) => (
+				<p class="tag">
+					<a href={`/tags/${tag}`}>{tag}</a>
+				</p>
+			))
+		}
+	</div>
+
+	<slot />
+</BaseLayout>

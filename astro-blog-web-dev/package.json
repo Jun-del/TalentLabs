@@ -1,0 +1,19 @@
+{
+	"name": "astro-blog",
+	"type": "module",
+	"version": "0.0.1",
+	"scripts": {
+		"dev": "astro dev",
+		"start": "astro dev",
+		"build": "astro build",
+		"preview": "astro preview",
+		"astro": "astro"
+	},
+	"dependencies": {
+		"@astrojs/mdx": "^1.0.0",
+		"@astrojs/preact": "^2.2.2",
+		"@astrojs/rss": "^2.4.4",
+		"astro": "^3.0.5",
+		"preact": "^10.17.1"
+	}
+}

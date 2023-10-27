@@ -1,0 +1,27 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+// import Greeting from "../components/Greeting.jsx";
+import Social from "../components/Social.astro";
+
+const pageTitle = "Home Page";
+
+const platform = "github";
+const username = "jun-del";
+---
+
+<BaseLayout pageTitle={pageTitle}>
+	<h2>Basic introduction to web development</h2>
+	<!-- <Greeting client:load messages={["Hej", "Hallo", "Hola", "Habari"]} /> -->
+
+	<h2>Access the excalidraw link here:
+		<a href="https://excalidraw.com/#json=QQn2cT3j-s40t3fjC3mcg,ZBo_40HCWDNyRhqOFpy4EQ"
+		target="_blank" rel="noreferrer">Excalidraw</a>
+	</h2>
+
+	<br />
+	<h3>
+		The repository for this website is at: <a
+			href="https://github.com/Jun-del/astro-blog-web-dev" target="_blank" rel="noreferrer">GitHub</a
+		>
+	</h3>
+</BaseLayout>
