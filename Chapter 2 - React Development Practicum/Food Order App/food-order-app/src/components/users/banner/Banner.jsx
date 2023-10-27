@@ -12,7 +12,7 @@ const Banner = ({ handleClick }) => {
     <Box
       sx={{
         backgroundImage: `url(${bannerImage})`,
-        backgroundPosition: "center",
+        backgroundPosition: "50% 80%",
         backgroundSize: "cover",
         backgroundRepeat: "no-repeat",
       }}

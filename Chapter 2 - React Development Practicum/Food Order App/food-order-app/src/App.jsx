@@ -16,7 +16,7 @@ function App() {
       <CssBaseline />
 
       <OrderedItemsProvider>
-        {switchPage ? <Users id="user-page" /> : <Admin />}
+        {switchPage ? <Users /> : <Admin />}
       </OrderedItemsProvider>
       <Footer />
     </ThemeProvider>
