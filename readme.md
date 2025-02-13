@@ -13,8 +13,8 @@ Repository for TalentLabs Certified Associate in Frontend Development
 
 ### Table of Contents
 
-| No. | Title               | Description                              |                                                                                         Repo Link                                                                                          |                         Demo Link                         |
-| :-: | ------------------- | ---------------------------------------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :-------------------------------------------------------: |
-|  1  | Contact Manager App | React, React Router, Tailwind CSS, Axios | N/A | [Demo (No Backend)](https://contact-manager.aboutjun.me/) |
-|  2  | News Search App     | React, React Router, Material UI, Axios  | N/A |             [Demo](https://news.aboutjun.me/)             |
-|  3  | Food Order App      | React, Material UI, Axios, Swiper        | N/A |             [Demo](https://food.aboutjun.me/)             |
+| No. | Title               | Description                              |
+| :-: | ------------------- | ---------------------------------------- |
+|  1  | Contact Manager App | React, React Router, Tailwind CSS, Axios |
+|  2  | News Search App     | React, React Router, Material UI, Axios  |
+|  3  | Food Order App      | React, Material UI, Axios, Swiper        |
